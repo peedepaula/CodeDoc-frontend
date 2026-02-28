@@ -3,19 +3,21 @@
         <section class="conteudo">
             <Historico class="historico"/>
                 <section class="conteudo-real">
-
+                    <ConfiguracaoComp/>
                 </section>
         </section>
     </main>
 </template>
 
 <script>
+import ConfiguracaoComp from '@/components/ConfiguracaoComp.vue';
 import Historico from '@/components/Historico.vue';
 
 export default {
     name: 'Configuracao',
     components:{
-        Historico
+        Historico,
+        ConfiguracaoComp
     }
 }
 </script>

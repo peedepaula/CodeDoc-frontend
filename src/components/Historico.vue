@@ -203,7 +203,7 @@ export default{
 
 .cargo{
     font-size: 10px;
-    font-weight: 300;
+    opacity: 0.7;
     color: var(--cor-texto);
 }
 
