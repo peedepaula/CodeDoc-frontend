@@ -10,6 +10,9 @@
                 :telaAtual="telaAtual"
                 />
                 <BarraDeMensagem/>
+                <button class="baixar">
+                    <img src="@/assets/download.png" class="icon-baixar">
+                </button>
             </section>
         </section>
     </main>
@@ -77,6 +80,32 @@ export default{
     box-sizing: border-box;
     position: relative;
     padding: 20px;
+}
+
+.baixar{
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--cor-tema);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 100px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.baixar:hover{
+    transform: translateY(-2px);
+}
+
+.icon-baixar{
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) invert(1);
 }
 
 </style>

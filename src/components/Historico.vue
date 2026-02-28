@@ -10,16 +10,16 @@
 
         <div class="nav-usuario">
             <nav class="nav">
-                <router-link to="/" class="sessao-icon">
+                <router-link to="/configuracao" class="sessao-icon">
                     <img src="@/assets/configuracao.png" class="icon">
                     <p class="sessao">Configuração</p>
                 </router-link>
-                <router-link to="/" class="sessao-icon">
+                <router-link to="/perfil" class="sessao-icon">
                     <img src="@/assets/perfil.png" class="icon">
                     <p class="sessao">Pefil</p>
                 </router-link>
             </nav>
-            <div class="usuario">
+            <router-link to="/perfil" class="usuario">
                 <div class="foto-usuario">
                     <img src="@/assets/camera.png" class="sem-foto">
                 </div>
@@ -27,7 +27,7 @@
                     <p class="nome-usuario">Pedro de Paula</p>
                     <p class="cargo">Programador</p>
                 </div>
-            </div>
+            </router-link>
         </div>
     </section>
 
@@ -105,17 +105,18 @@ export default{
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 40px;
+    gap: 20px;
     box-sizing: border-box;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     margin-top: auto;
 }
 
 .nav{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
+    
 }
 
 .sessao-icon{
@@ -128,8 +129,27 @@ export default{
     transition: all ease 0.3s;
     cursor: pointer;
     text-decoration: none;
+    height: 40px;
+    border-radius: 100px;
+    padding-left: 15px;
+    box-sizing: border-box;
 }
 
+.sessao-icon:hover{
+    background-color: #f4f4f4;
+}
+
+.sessao-icon.router-link-active{
+    background-color: var(--cor-tema);
+}
+
+.sessao-icon.router-link-active .sessao{
+    color: var(--cor-fundo-2);
+}
+
+.sessao-icon.router-link-active .icon{
+    filter: brightness(0) invert(1);
+}
 
 .sessao{
     font-size: 14px;
@@ -137,10 +157,6 @@ export default{
     color: var(--cor-texto);
     text-decoration: none;
     transition: all ease 0.3s;
-}
-
-.sessao:hover{
-    transform: translateX(5px);
 }
 
 .icon{
@@ -156,6 +172,7 @@ export default{
     gap: 10px;
     user-select: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .foto-usuario{

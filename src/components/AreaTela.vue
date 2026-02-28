@@ -40,6 +40,7 @@ export default{
     top: 20px;
     border: solid 1px var(--cor-fundo);
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
+    z-index: 10;
 }
 
 .area-link{
