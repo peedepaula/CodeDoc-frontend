@@ -1,7 +1,6 @@
 <template>
     <main class="corpo">
         <section class="conteudo">
-            <Historico class="historico"/>
             <section class="conteudo-real">
                 <AreaTela
                 @setou-tela="setarTela"
@@ -63,10 +62,6 @@ export default{
     width: 100%;
     display: flex;
     flex-direction: row;
-}
-
-.historico{
-    width: 300px;
 }
 
 .conteudo-real{

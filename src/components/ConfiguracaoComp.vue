@@ -1,6 +1,23 @@
 <template>
     <section class="corpo-configuracao">
         <h3 class="titulo">Configuração</h3>
+        <div class="dados">
+            <div class="linha">
+                <div class="input-p">
+                    <p class="p-input">E-mail:</p>
+                    <input type="text" class="input" placeholder="Seu E-mail..">
+                </div>
+                <button class="botao" @click="$emit('mostrar-trocar-email')">Trocar E-mail</button>
+            </div>
+            <hr>
+            <div class="linha">
+                <div class="input-p">
+                    <p class="p-input">Senha:</p>
+                    <input type="text" class="input" placeholder="Sua senha...">
+                </div>
+                <button class="botao" @click="$emit('mostrar-trocar-senha')">Trocar senha</button>
+            </div>
+        </div>
     </section>
 
 </template>
@@ -20,7 +37,8 @@ export default{
     align-items: center;
     position: relative;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 20px;
+    border: solid 1px var(--cor-borda);
 }
 
 .titulo{
@@ -29,5 +47,69 @@ export default{
     color: var(--cor-tema);
     position: absolute;
     top: 15px;
+}
+
+.dados{
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+hr{
+    border: solid 1px var(--cor-borda);
+    width: 100%;
+}
+
+.linha{
+    width: 100%;
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-p{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.p-input{
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cor-tema);
+}
+
+.input{
+    width: 300px;
+    height: 45px;
+    border-radius: 10px;
+    border: solid 1px rgb(238, 238, 238);
+    background-color: rgb(248, 248, 248);
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.botao{
+    height: 35px;
+    padding: 0 32px 0 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    border: none;
+    border-radius: 100px;
+    background-color: var(--cor-tema);
+    color: var(--cor-fundo-2);
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all ease 0.3s;
+}
+
+.botao:hover{
+    transform: translateY(-2px);
 }
 </style>

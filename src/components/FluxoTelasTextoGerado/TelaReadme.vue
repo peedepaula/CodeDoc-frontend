@@ -1,19 +1,62 @@
 <template>
     <section class="corpo-readme">
         <h3 class="titulo">Readme</h3>
+        <p class="texto-resposta" v-html="readmeFormatado"></p>
 
+        <Copiar
+        :textoParaCopiar="readme"
+        />
     </section>
 </template>
 <script>
+import { marked } from "marked"
+import Copiar from "../Copiar.vue";
+
 export default{
-    name: 'TelaReadme'
+    name: 'TelaReadme',
+    components:{
+        Copiar
+    },
+    data(){
+        return{
+            readme: `
+            # Sistema de Cadastro
+
+            Este projeto é um sistema desenvolvido em Python utilizando FastAPI.
+
+            ## Funcionalidades
+
+            - Cadastro de usuários
+            - Login com autenticação JWT
+            - Listagem de registros
+
+            ## Estrutura do Projeto
+
+            - main.py: Arquivo principal da aplicação
+            - auth_service.py: Lógica de autenticação
+            - models.py: Modelos de dados
+
+            ## Como executar
+
+            1. Instale as dependências
+            2. Execute o servidor
+            3. Acesse localhost:8000
+            `
+        }
+    },
+
+    computed:{
+        readmeFormatado(){
+            return marked(this.readme)
+        }
+    }
 }
 </script>
 
 <style scoped>
 .corpo-readme{
     width: 100%;
-    height: 1000px;
+    height: auto;
     border-radius: 20px;
     background-color: var(--cor-fundo-2);
     position: relative;
@@ -22,11 +65,24 @@ export default{
     align-items: center;
     box-sizing: border-box;
     padding: 15px;
+    border: solid 1px var(--cor-borda);
+    padding-bottom: 60px;
 }
 
 .titulo{
     font-size: 14px;
     font-weight: 400;
     color: var(--cor-tema);
+    position: absolute;
+    top: 15px;
+}
+
+.texto-resposta{
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cor-tema);
+    width: 100%;
+    text-align: start;
+    margin-top: 40px;
 }
 </style>

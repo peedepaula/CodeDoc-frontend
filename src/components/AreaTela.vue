@@ -38,7 +38,7 @@ export default{
     border-radius: 100px;
     position: fixed;
     top: 20px;
-    border: solid 1px var(--cor-fundo);
+    border: solid 1px var(--cor-borda);
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
     z-index: 10;
 }

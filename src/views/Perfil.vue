@@ -1,7 +1,6 @@
 <template>
     <main class="corpo">
         <section class="conteudo">
-            <Historico class="historico"/>
                 <section class="conteudo-real">
                     <PerfilComp/>
                 </section>
@@ -12,6 +11,8 @@
 <script>
 import Historico from '@/components/Historico.vue';
 import PerfilComp from '@/components/PerfilComp.vue';
+import TrocarEmail from '@/components/TrocarEmail.vue';
+import TrocarSenha from '@/components/TrocarSenha.vue';
 
 export default {
     name: 'Perfil',
@@ -36,12 +37,6 @@ export default {
     max-width: 1600px;
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-.historico{
-    width: 300px;
 }
 
 .conteudo-real{
@@ -56,4 +51,5 @@ export default {
     position: relative;
     padding: 20px;
 }
+
 </style>

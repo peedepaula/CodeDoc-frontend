@@ -4,7 +4,13 @@
         <div class="historico">
             <p class="sessao-historico">Histórico</p>
             <div class="historico-conteudo">
-                <p class="titlo-historico" v-for="n in 10" :key="ht">Documentação programa</p>
+                <p class="titlo-historico">Documentação programa</p>
+                <p class="titlo-historico">Projeto cinema</p>
+                <p class="titlo-historico">Teste de tal coisa</p>
+                <p class="titlo-historico">Hoje não</p>
+                <p class="titlo-historico">Fazer festa</p>
+                <p class="titlo-historico">Tentar jogar</p>
+                <p class="titlo-historico">Fazer o documento</p>
             </div>
         </div>
 
@@ -16,12 +22,13 @@
                 </router-link>
                 <router-link to="/perfil" class="sessao-icon">
                     <img src="@/assets/perfil.png" class="icon">
-                    <p class="sessao">Pefil</p>
+                    <p class="sessao">Sua conta</p>
                 </router-link>
             </nav>
             <router-link to="/perfil" class="usuario">
                 <div class="foto-usuario">
-                    <img src="@/assets/camera.png" class="sem-foto">
+                    <img :src="fotoFalsa" class="foto-real" v-if="fotoFalsa">
+                    <img src="@/assets/camera.png" class="sem-foto" v-else>
                 </div>
                 <div class="detalhes">
                     <p class="nome-usuario">Pedro de Paula</p>
@@ -34,16 +41,23 @@
 </template>
 
 <script>
+import fotoFalsa from '@/assets/foto-falsa.jpg'
+
 export default{
-    name: 'Historico'
+    name: 'Historico',
+    data(){
+        return{
+            fotoFalsa
+        }
+    }
 }
 </script>
 
 <style scoped>
 .corpo-historico{
     height: 100vh !important;
-    width: 250px;
-    /* border-right: solid 1px #898989; */
+    width: 280px !important;
+    border-right: solid 1px var(--cor-borda);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -88,13 +102,14 @@ export default{
 }
 
 .titlo-historico{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--cor-texto);
     width: fit-content;
     transition: all ease 0.3s;
     cursor: pointer;
     user-select: none;
+    opacity: 1;
 }
 
 .titlo-historico:hover{
@@ -114,7 +129,7 @@ export default{
 .nav{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
     
 }
@@ -152,7 +167,7 @@ export default{
 }
 
 .sessao{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--cor-texto);
     text-decoration: none;
@@ -183,6 +198,13 @@ export default{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.foto-real{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100px;
 }
 
 .sem-foto{
