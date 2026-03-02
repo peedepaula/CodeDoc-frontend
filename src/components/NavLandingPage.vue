@@ -40,6 +40,10 @@ export default{
     color: var(--cor-fundo-2);
     text-decoration: none;
     user-select: none;
+    transition: all ease 0.3s;
+}
+.logo:hover{
+    transform: translateY(-2px);
 }
 
 .botoes{
@@ -52,7 +56,7 @@ export default{
 .link-nav{
     height: 35px;
     padding: 0 32px 0 32px;
-    background: linear-gradient(to left, #042a3b, #023a53);
+    background: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +65,12 @@ export default{
     color: var(--cor-fundo-2);
     text-decoration: none;
     border-radius: 100px;
+    border: solid 1px var(--cor-fundo-2);
+    transition: all ease 0.3s;
+}
 
+.link-nav:hover{
+    transform: translateY(-2px);
 }
 
 .menu{

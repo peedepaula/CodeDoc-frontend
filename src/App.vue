@@ -1,11 +1,12 @@
 <template>
     <div class="corpo-principal">
-        <Historico/>
+        <Historico v-if="!$route.meta.esconderHistorico"/>
         <div class="corpo-principal-real">
             <RouterView/>
         
             <!-- PopUps -->
             <Copiado/>
+            <PopUpGlobal/>
              <!-- PopUps -->
         </div>
     </div>
@@ -14,12 +15,14 @@
 <script>
 import Historico from './components/Historico.vue';
 import Copiado from './components/popUps/Copiado.vue';
+import PopUpGlobal from './components/PopUps/PopUpGlobal.vue';
 
 export default{
     name: "App",
     components:{
         Copiado,
-        Historico
+        Historico,
+        PopUpGlobal
     }
 }
 </script>
@@ -34,6 +37,8 @@ export default{
     --cor-texto: #0c465f;
     --cor-sub-texto: #909090;
     --cor-borda: #dddddd;
+    --cor-erro: #FF0000;
+    --cor-concluido: #008000;
 }
 
 *{
@@ -41,6 +46,16 @@ export default{
     padding: 0;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
+}
+
+::placeholder{
+    opacity: 0.7;
+}
+
+input{
+  font-size: 13px;
+  color: var(--cor-tema);
+  font-weight: 500;
 }
 
 .corpo-principal{

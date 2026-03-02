@@ -1,6 +1,6 @@
 <template>
     <section class="corpo-historico">
-        <h2 class="logo">DocCode</h2>
+        <router-link to="/dashboard" class="logo">CodeDoc</router-link>
         <div class="historico">
             <p class="sessao-historico">Histórico</p>
             <div class="historico-conteudo">
@@ -74,6 +74,7 @@ export default{
     font-size: 25px;
     font-weight: 700;
     color: var(--cor-texto);
+    text-decoration: none;
 }
 
 .historico{

@@ -1,55 +1,40 @@
 <template>
     <section class="corpo-registrar">
-        <h3 class="titulo">Registrar</h3>
+        <h3 class="titulo">Nova senha</h3>
         <div class="area-dados">
             <div class="input-p">
-                <p class="p-input">Nome:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="criarConta.nome">
-            </div>
-
-            <div class="input-p">
-                <p class="p-input">E-mail:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="criarConta.email">
-            </div>
-
-            <div class="input-p">
-                <p class="p-input">Senha:</p>
-                <input type="text" class="input" placeholder="Sua senha..." v-model="criarConta.senha">
-                <p class="senha-fraca" :class="senhaFraca ? 'senha-fraca' : 'senha-forte'" v-if="criarConta.senha">{{senhaFraca? 'Senha fraca' : 'Senha forte'}}</p>
+                <p class="p-input">Nova senha:</p>
+                <input type="text" class="input" placeholder="Sua senha..." v-model="novaSenha">
+                <p class="senha-fraca" :class="senhaFraca ? 'senha-fraca' : 'senha-forte'" v-if="novaSenha">{{senhaFraca? 'Senha fraca' : 'Senha forte'}}</p>
                 <p class="detalhe">senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e um símbolo (#$!@&)</p>
             </div>
 
             <div class="input-p">
-                <p class="p-input">Senha novamente:</p>
+                <p class="p-input">Nova senha novamente:</p>
                 <div class="input-icon">
-                    <input :type="mostrarSenha? 'text': 'password'" class="input" placeholder="Sua senha novamente..." v-model="senhaNovamente">
+                    <input :type="mostrarSenha? 'text': 'password'" class="input" placeholder="Sua senha novamente..." v-model="novaSenhaNovamente">
                     <img :src="olhoAberto" v-if="!mostrarSenha" @click="mostraEsconderSenha" class="olho">
                     <img :src="olhoFechado" v-else @click="mostraEsconderSenha" class="olho">
                 </div>
             </div>
-            <button class="entrar">Registrar</button>
+            <button class="salvar" @click="$emit('trocada')">Salvar</button>
         </div>
-        
-        <router-link to="/login" class="detalhe-2">Já tem conta? <span class="grosso">Clique aqui pra entrar.</span></router-link>
     </section>
 </template>
+
 <script>
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
 
 export default{
-    name: 'RegistrarComp',
+    name: 'NovaSenha',
     data(){
         return{
             olhoAberto,
             olhoFechado,
-            mostrarSenha: false,
-            criarConta: {
-                nome: '',
-                email: '',
-                senha: ''
-            },
-            senhaNovamente: ''
+            novaSenha: '',
+            novaSenhaNovamente: '',
+            mostrarSenha: false
         }
     },
 
@@ -61,7 +46,7 @@ export default{
 
     computed: {
         senhaFraca() {
-            const senha = this.criarConta.senha;
+            const senha = this.novaSenha;
             const regexForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$!@&])[A-Za-z\d#$!@&]{8,}$/;
             
             return !regexForte.test(senha);
@@ -73,10 +58,11 @@ export default{
     },
 }
 </script>
+
 <style scoped>
 .corpo-registrar{
     width: 500px;
-    height: 580px;
+    height: 450px;
     border-radius: 30px;
     background-color: var(--cor-fundo-2);
     display: flex;
@@ -146,7 +132,7 @@ export default{
     cursor: pointer;
 }
 
-.entrar{
+.salvar{
     align-self: flex-end;
     height: 35px;
     color: var(--cor-fundo-2);
@@ -160,7 +146,7 @@ export default{
     transition: all ease 0.3s;
 }
 
-.entrar:hover{
+.salvar:hover{
     transform: translateY(-2px);
 }
 
@@ -189,11 +175,7 @@ export default{
     text-align: center;
     text-decoration: none;
     position: absolute;
-    bottom: 30px;
-}
-
-.grosso{
-    font-weight: 500;
+    bottom: 40px;
 }
 
 @keyframes surgir {
@@ -204,5 +186,4 @@ export default{
         opacity: 1;
     }
 }
-
 </style>

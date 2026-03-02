@@ -5,6 +5,8 @@
                 <ConfiguracaoComp
                 @mostrar-trocar-email="mostrarTrocarEmail=true"
                 @mostrar-trocar-senha="mostrarTrocarSenha=true"
+                @mostrar-conta-sair="mostrarSairDaConta=true"
+                @mostrar-conta-apagar="mostrarApagarConta=true"
                 />
             </section>
         </section>
@@ -20,14 +22,28 @@
             @fechar-trocar-senha="mostrarTrocarSenha=false"
             />
         </section>
+
+        <section class="pop-ups" v-if="mostrarSairDaConta">
+            <ConfirmacaoSair
+            @fechar-conta-sair="mostrarSairDaConta=false"
+            />
+        </section>
+
+        <section class="pop-ups" v-if="mostrarApagarConta">
+            <ConfirmacaoApagar
+            @fechar-conta-apagar="mostrarApagarConta=false"
+            />
+        </section>
     </main>
 </template>
 
 <script>
 import ConfiguracaoComp from '@/components/ConfiguracaoComp.vue';
 import Historico from '@/components/Historico.vue';
-import TrocarEmail from '@/components/TrocarEmail.vue';
-import TrocarSenha from '@/components/TrocarSenha.vue';
+import ConfirmacaoApagar from '@/components/PopUps/ConfirmacaoApagar.vue';
+import ConfirmacaoSair from '@/components/PopUps/ConfirmacaoSair.vue';
+import TrocarEmail from '@/components/PopUps/TrocarEmail.vue';
+import TrocarSenha from '@/components/PopUps/TrocarSenha.vue';
 
 export default {
     name: 'Configuracao',
@@ -35,12 +51,16 @@ export default {
         Historico,
         ConfiguracaoComp,
         TrocarSenha,
-        TrocarEmail
+        TrocarEmail,
+        ConfirmacaoSair,
+        ConfirmacaoApagar
     },
     data(){
         return{
             mostrarTrocarSenha: false,
-            mostrarTrocarEmail: false
+            mostrarTrocarEmail: false,
+            mostrarSairDaConta: false,
+            mostrarApagarConta: false
         } 
     }
 }

@@ -11,8 +11,6 @@
 <script>
 import Historico from '@/components/Historico.vue';
 import PerfilComp from '@/components/PerfilComp.vue';
-import TrocarEmail from '@/components/TrocarEmail.vue';
-import TrocarSenha from '@/components/TrocarSenha.vue';
 
 export default {
     name: 'Perfil',

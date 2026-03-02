@@ -67,6 +67,7 @@ export default{
     padding: 15px;
     border: solid 1px var(--cor-borda);
     padding-bottom: 60px;
+    animation: surgir 0.3s ease;
 }
 
 .titulo{
@@ -80,9 +81,27 @@ export default{
 .texto-resposta{
     font-size: 15px;
     font-weight: 500;
-    color: var(--cor-tema);
+    color: var(--cor-fundo-2);
     width: 100%;
     text-align: start;
     margin-top: 40px;
 }
+
+.texto-resposta :deep(pre){
+    background-color: black;
+    border-radius: 10px;
+    padding: 40px 0 40px 0;
+    background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+@keyframes surgir {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
 </style>

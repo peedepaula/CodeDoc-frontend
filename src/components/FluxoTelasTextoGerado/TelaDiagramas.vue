@@ -1,10 +1,15 @@
 <template>
     <section class="corpo-diagrama">
         <h3 class="titulo">Diagramas</h3>
-        <div id="diagramas"
-            class="mermaid diagrama"
-            v-html="codigoDiagrama">
+        <div class="diagrama-titulo" v-for="n in 4">
+            <h4 class="titulo-diagrama">Cadastro</h4>
+            <div id="diagramas"
+                class="mermaid diagrama"
+                v-html="codigoDiagrama"
+                >
+            </div>
         </div>
+
 
     </section>
 </template>
@@ -45,11 +50,13 @@ export default{
     position: relative;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     align-items: center;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 20px;
     border: solid 1px var(--cor-borda);
     padding-bottom: 60px;
+    animation: surgir 0.3s ease;
 }
 
 .titulo{
@@ -60,7 +67,37 @@ export default{
     top: 15px;
 }
 
+.diagrama-titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    min-width: 60%;
+    max-width: 100%;
+    gap: 5px;
+    margin-top: 60px;
+    border: 2px dotted var(--cor-tema);
+    border-radius: 8px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.titulo-diagrama{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--cor-tema);
+}
+
 #diagramas{
     margin-top: 40px;
+}
+
+@keyframes surgir {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 </style>

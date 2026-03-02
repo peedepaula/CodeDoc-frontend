@@ -51,6 +51,6 @@ export default{
 .conteudo-telas-texto-gerado{
     width: 100%;
     height: auto;
-    padding: 70px 0 60px 0;
+    padding: 70px 0 80px 0;
 }
 </style>

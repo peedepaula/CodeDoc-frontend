@@ -8,16 +8,23 @@
             @input="autoResize"
             rows="1"
         ></textarea>
-        <button class="pegar-arquivo">
+        <button class="pegar-arquivo" @click="$refs.fileInput.click()">
             <img src="@/assets/arquivo.png" class="icon-arquivo">
         </button>
-        <button class="enviar">
+        <input type="file"
+        style="display: none;"
+        ref="fileInput"
+        @change="handleFileUpload"
+        >
+        <button class="enviar" @click="mostrarPopUp('concluido', 'ainda cria', 'ainda meu cria')">
             <img src="@/assets/enviar.png" class="icon-enviar">
         </button>
     </div>
 </template>
 
 <script>
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
+
 export default {
     name: 'BarraDeMensagem',
     data() {
@@ -26,11 +33,20 @@ export default {
         }
     },
     methods: {
+        mostrarPopUp,
+        
         autoResize() {
             const el = this.$refs.textarea
 
             el.style.height = 'auto'
             el.style.height = Math.min(el.scrollHeight, 200) + 'px'
+        },
+
+        handleFileUpload(event) {
+            const arquivo = event.target.files[0];
+            if (arquivo) {
+                console.log("Arquivo selecionado:", arquivo.name);
+            }
         }
     }
 }
@@ -47,6 +63,7 @@ export default {
     width: auto;
     position: fixed;
     bottom: 20px;
+    animation: surgirDeBaixo 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mensagem{
@@ -113,6 +130,18 @@ export default {
     width: 15px;
     height: 15px;
     filter: brightness(0) invert(1);
+}
+
+@keyframes surgirDeBaixo {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 </style>

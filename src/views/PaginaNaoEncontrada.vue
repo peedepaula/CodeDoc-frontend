@@ -3,19 +3,19 @@
         <div class="nav">
             <NavLandingPage/>
         </div>
-        <LoginComp/>
+        <PaginaNaoEncontradaComp/>
     </main>
+
 </template>
-
 <script>
-import LoginComp from '@/components/LoginComp.vue';
 import NavLandingPage from '@/components/NavLandingPage.vue';
+import PaginaNaoEncontradaComp from '@/components/PaginaNaoEncontradaComp.vue';
 
-export default {
-    name: 'Login',
+export default{
+    name: 'PeginaNaoEncontrada',
     components:{
-        LoginComp,
-        NavLandingPage
+        NavLandingPage,
+        PaginaNaoEncontradaComp
     }
 }
 </script>
@@ -26,7 +26,6 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: var(--cor-tema);
     background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
@@ -39,4 +38,5 @@ export default {
     position: absolute;
     top: 0;
 }
+
 </style>

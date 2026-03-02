@@ -1,51 +1,33 @@
 <template>
-    <section class="corpo-login">
-        <h3 class="titulo">Login</h3>
+    <section class="corpo-reset">
+        <h3 class="titulo">Resetar senha:</h3>
         <div class="area-dados">
             <div class="input-p">
                 <p class="p-input">E-mail:</p>
                 <input type="text" class="input" placeholder="Ex: seu@email.com">
             </div>
-
-            <div class="input-p">
-                <p class="p-input">Senha:</p>
-                <div class="input-icon">
-                    <input :type="mostrarSenha? 'text': 'password'" class="input" placeholder="Sua senha...">
-                    <img :src="olhoAberto" v-if="!mostrarSenha" @click="mostraEsconderSenha" class="olho">
-                    <img :src="olhoFechado" v-else @click="mostraEsconderSenha" class="olho">
-                </div>
-                <router-link to="/esqueceu-senha" class="detalhe">Esqueceu a senha? clique aqui para redefinir.</router-link>
-            </div>
-            <button class="entrar" onclick="window.location='/dashboard'">Entrar</button>
+            <p class="detalhe">Será mandado um link em seu E-mail, ao clicar nele você será redirecionado para a tela pra realizar a troca de senha.</p>
+            <button class="mandar">Mandar</button>
         </div>
-        <router-link to="/registrar" class="detalhe-2">Ainda não tem conta? <span class="grosso">Clique aqui pra criar uma.</span></router-link>
     </section>
 </template>
 <script>
-import olhoAberto from '@/assets/olho-aberto.png'
-import olhoFechado from '@/assets/olho-fechado.png'
-
 export default{
-    name: 'LoginComp',
+    name: 'ResetDeSenhaComp',
     data(){
         return{
-            olhoAberto,
-            olhoFechado,
-            mostrarSenha: false
         }
     },
 
     methods:{
-        mostraEsconderSenha(){
-            this.mostrarSenha = !this.mostrarSenha
-        }
+
     }
 }
 </script>
 <style scoped>
-.corpo-login{
+.corpo-reset{
     width: 500px;
-    height: 500px;
+    height: 270px;
     border-radius: 30px;
     background-color: var(--cor-fundo-2);
     display: flex;
@@ -70,7 +52,7 @@ export default{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 5px;
     width: 80%;
     margin-top: 60px;
 }
@@ -88,15 +70,6 @@ export default{
     color: var(--cor-tema);
 }
 
-.input-icon{
-    width: 100%;
-    height: 45px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-}
-
 .input{
     width: 100%;
     height: 45px;
@@ -107,16 +80,10 @@ export default{
     padding-left: 10px;
 }
 
-.olho{
+.mandar{
     position: absolute;
     right: 10px;
-    height: 18px;
-    width: 18px;
-    cursor: pointer;
-}
-
-.entrar{
-    align-self: flex-end;
+    bottom: 10px;
     height: 35px;
     color: var(--cor-fundo-2);
     background-color: var(--cor-tema);
@@ -129,7 +96,7 @@ export default{
     transition: all ease 0.3s;
 }
 
-.entrar:hover{
+.mandar:hover{
     transform: translateY(-2px);
 }
 
@@ -138,19 +105,6 @@ export default{
     color: var(--cor-tema);
     text-align: start;
     text-decoration: none;
-}
-
-.detalhe-2{
-    font-size: 12px;
-    color: var(--cor-tema);
-    text-align: center;
-    text-decoration: none;
-    position: absolute;
-    bottom: 40px;
-}
-
-.grosso{
-    font-weight: 500;
 }
 
 @keyframes surgir {

@@ -5,17 +5,31 @@
             <div class="linha">
                 <div class="input-p">
                     <p class="p-input">E-mail:</p>
-                    <input type="text" class="input" placeholder="Seu E-mail..">
+                    <input type="text" class="input" placeholder="Seu E-mail.." v-model="email" disabled>
                 </div>
                 <button class="botao" @click="$emit('mostrar-trocar-email')">Trocar E-mail</button>
+            </div>
+            <!-- <hr> -->
+            <div class="linha">
+                <div class="input-p">
+                    <p class="p-input">Senha:</p>
+                    <input type="password" class="input" placeholder="Sua senha..." v-model="senha" disabled>
+                </div>
+                <button class="botao" @click="$emit('mostrar-trocar-senha')">Trocar senha</button>
             </div>
             <hr>
             <div class="linha">
                 <div class="input-p">
-                    <p class="p-input">Senha:</p>
-                    <input type="text" class="input" placeholder="Sua senha...">
+                    <p class="p-input">Sair da conta:</p>
                 </div>
-                <button class="botao" @click="$emit('mostrar-trocar-senha')">Trocar senha</button>
+                <button class="botao" id="sair" @click="$emit('mostrar-conta-sair')">Sair</button>
+            </div>
+            <hr>
+            <div class="linha">
+                <div class="input-p">
+                    <p class="p-input">Apagar conta:</p>
+                </div>
+                <button class="botao" id="apagar" @click="$emit('mostrar-conta-apagar')">Apagar</button>
             </div>
         </div>
     </section>
@@ -23,13 +37,19 @@
 </template>
 <script>
 export default{
-    name: 'ConfiguracaoComp'
+    name: 'ConfiguracaoComp',
+    data(){
+        return{
+            email: 'peedepaula13@gmail.com',
+            senha: '**********'
+        }
+    }
 }
 </script>
 <style scoped>
 .corpo-configuracao{
     width: 100%;
-    height: 500px;
+    height: 550px;
     background-color: var(--cor-fundo-2);
     border-radius: 30px;
     display: flex;
@@ -39,6 +59,7 @@ export default{
     box-sizing: border-box;
     padding: 20px;
     border: solid 1px var(--cor-borda);
+    animation: surgir 0.3s ease;
 }
 
 .titulo{
@@ -92,6 +113,14 @@ hr{
     padding-left: 10px;
 }
 
+#apagar{
+    background-color: var(--cor-erro);
+}
+
+#sair{
+    background-color: var(--cor-erro);
+}
+
 .botao{
     height: 35px;
     padding: 0 32px 0 32px;
@@ -103,7 +132,7 @@ hr{
     border-radius: 100px;
     background-color: var(--cor-tema);
     color: var(--cor-fundo-2);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     cursor: pointer;
     transition: all ease 0.3s;
@@ -111,5 +140,14 @@ hr{
 
 .botao:hover{
     transform: translateY(-2px);
+}
+
+@keyframes surgir {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 </style>

@@ -91,6 +91,7 @@ export default{
     border-radius: 100px;
     transition: all ease 0.3s;
     cursor: pointer;
+    animation: surgirDaDireita 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .baixar:hover{
@@ -101,6 +102,18 @@ export default{
     width: 15px;
     height: 15px;
     filter: brightness(0) invert(1);
+}
+
+@keyframes surgirDaDireita {
+    0% {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 </style>

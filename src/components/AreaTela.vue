@@ -41,6 +41,7 @@ export default{
     border: solid 1px var(--cor-borda);
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
     z-index: 10;
+    animation: surgirDeCima 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .area-link{
@@ -69,5 +70,17 @@ export default{
     color: var(--cor-fundo-2);
     padding: 0 15px 0 15px;
     border-radius: 100px;
+}
+
+@keyframes surgirDeCima {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>

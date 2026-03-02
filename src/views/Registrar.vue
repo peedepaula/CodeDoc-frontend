@@ -29,6 +29,8 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: var(--cor-tema);
+    background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
+    background-size: 30px 30px;
 }
 
 .nav{

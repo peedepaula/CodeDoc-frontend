@@ -3,19 +3,18 @@
         <div class="nav">
             <NavLandingPage/>
         </div>
-        <LoginComp/>
+        <ResetDeSenhaComp/>
     </main>
 </template>
-
 <script>
-import LoginComp from '@/components/LoginComp.vue';
 import NavLandingPage from '@/components/NavLandingPage.vue';
+import ResetDeSenhaComp from '@/components/ResetDeSenhaComp.vue';
 
-export default {
-    name: 'Login',
+export default{
+    name: 'ResetDeSenha',
     components:{
-        LoginComp,
-        NavLandingPage
+        NavLandingPage,
+        ResetDeSenhaComp
     }
 }
 </script>

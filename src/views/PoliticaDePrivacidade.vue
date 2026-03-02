@@ -3,34 +3,35 @@
         <div class="nav">
             <NavLandingPage/>
         </div>
-        <LoginComp/>
+        <PoliticaDePrivacidadeComp/>
     </main>
 </template>
 
 <script>
-import LoginComp from '@/components/LoginComp.vue';
 import NavLandingPage from '@/components/NavLandingPage.vue';
+import PoliticaDePrivacidadeComp from '@/components/PoliticaDePrivacidadeComp.vue';
 
 export default {
-    name: 'Login',
+    name: 'PoliticaDePrivacidade',
     components:{
-        LoginComp,
-        NavLandingPage
+        NavLandingPage,
+        PoliticaDePrivacidadeComp
     }
 }
 </script>
 
 <style scoped>
 .corpo{
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: var(--cor-tema);
     background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
     background-size: 30px 30px;
+    padding-bottom: 30px;
 
 }
 
