@@ -7,12 +7,18 @@
                 />
                 <ControladorDeTela
                 :telaAtual="telaAtual"
+                @mostrar-apagar-projeto="mostrarConfirmacaoApagarProjeto=true"
                 />
                 <BarraDeMensagem/>
                 <button class="baixar">
                     <img src="@/assets/download.png" class="icon-baixar">
                 </button>
             </section>
+        </section>
+        <section class="pop-ups" v-if="mostrarConfirmacaoApagarProjeto">
+            <ConfirmacaoApagarProjeto
+            @fechar-apagar-projeto="mostrarConfirmacaoApagarProjeto=false"
+            />
         </section>
     </main>
 </template>
@@ -22,6 +28,7 @@ import AreaTela from '@/components/AreaTela.vue';
 import BarraDeMensagem from '@/components/BarraDeMensagem.vue';
 import ControladorDeTela from '@/components/FluxoTelasTextoGerado/ControladorDeTela.vue';
 import Historico from '@/components/Historico.vue';
+import ConfirmacaoApagarProjeto from '@/components/PopUps/ConfirmacaoApagarProjeto.vue';
 
 export default{
     name: 'Home',
@@ -29,12 +36,14 @@ export default{
         BarraDeMensagem,
         Historico,
         AreaTela,
-        ControladorDeTela
+        ControladorDeTela,
+        ConfirmacaoApagarProjeto
     },
 
     data(){
         return{
-            telaAtual: ''
+            telaAtual: '',
+            mostrarConfirmacaoApagarProjeto: false
         }
     },
 
@@ -102,6 +111,21 @@ export default{
     width: 15px;
     height: 15px;
     filter: brightness(0) invert(1);
+}
+
+.pop-ups{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00000031;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); 
 }
 
 @keyframes surgirDaDireita {

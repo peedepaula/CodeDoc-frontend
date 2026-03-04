@@ -1,7 +1,13 @@
 <template>
     <section class="corpo-wiki">
         <h3 class="titulo">Wiki</h3>
-        <p class="texto-resposta" v-html="wikiFormatado"></p>
+        <div class="fundo-textarea">
+            <textarea class="texto-resposta"
+            v-model="wiki"
+            @input="autoResize"
+            ref="textarea"
+            ></textarea>
+        </div>
 
         <Copiar
         :textoParaCopiar="wiki"
@@ -19,120 +25,131 @@ export default{
     },
     data(){
         return{
-            wiki: `
-            # 📚 Wiki Técnica – Sistema de Cadastro
+            wiki:
+`# 📚 Wiki Técnica – Sistema de Cadastro
 
-            ## 📌 Visão Geral
+## 📌 Visão Geral
 
-            O Sistema de Cadastro é uma API desenvolvida em Python utilizando FastAPI.  
-            Seu objetivo é gerenciar usuários e autenticação através de tokens JWT.
+O Sistema de Cadastro é uma API desenvolvida em Python utilizando FastAPI.  
+Seu objetivo é gerenciar usuários e autenticação através de tokens JWT.
 
-            A aplicação segue uma arquitetura simples baseada em separação de responsabilidades.
+A aplicação segue uma arquitetura simples baseada em separação de responsabilidades.
 
-            ---
+---
 
-            ## 🏗 Arquitetura do Projeto
+## 🏗 Arquitetura do Projeto
 
-            O sistema está dividido nas seguintes camadas:
+O sistema está dividido nas seguintes camadas:
 
-            - **Rotas** – Definem os endpoints da API.
-            - **Serviços** – Contêm as regras de negócio.
-            - **Modelos** – Representam a estrutura dos dados.
-            - **Banco de Dados** – Gerencia persistência das informações.
+- **Rotas** – Definem os endpoints da API.
+- **Serviços** – Contêm as regras de negócio.
+- **Modelos** – Representam a estrutura dos dados.
+- **Banco de Dados** – Gerencia persistência das informações.
 
-            ---
+---
 
-            ## 📂 Estrutura de Arquivos
-
-
-            .
-            ├── main.py
-            ├── auth_service.py
-            ├── models.py
-            └── database.py
+## 📂 Estrutura de Arquivos
 
 
-            ---
+.
+├── main.py
+├── auth_service.py
+├── models.py
+└── database.py
 
-            ## 📄 main.py
 
-            ### Responsabilidade
-            Arquivo principal da aplicação.
+---
 
-            ### Funções
-            - Inicializa a aplicação FastAPI.
-            - Registra as rotas disponíveis.
-            - Define dependências globais.
+## 📄 main.py
 
-            ---
+### Responsabilidade
+Arquivo principal da aplicação.
 
-            ## 🔐 auth_service.py
+### Funções
+- Inicializa a aplicação FastAPI.
+- Registra as rotas disponíveis.
+- Define dependências globais.
 
-            ### Responsabilidade
-            Gerencia autenticação e geração de tokens.
+---
 
-            ### Principais Funções
+## 🔐 auth_service.py
 
-            - login_usuario(email, senha)
-            - gerar_token(usuario)
+### Responsabilidade
+Gerencia autenticação e geração de tokens.
 
-            ### Fluxo
-            1. Valida credenciais
-            2. Gera token JWT
-            3. Retorna token ao cliente
+### Principais Funções
 
-            ---
+- login_usuario(email, senha)
+- gerar_token(usuario)
 
-            ## 🧱 models.py
+### Fluxo
+1. Valida credenciais
+2. Gera token JWT
+3. Retorna token ao cliente
 
-            ### Responsabilidade
-            Define os modelos de dados do sistema.
+---
 
-            ### Modelo Usuario
+## 🧱 models.py
 
-            - id: inteiro
-            - nome: string
-            - email: string
-            - senha_hash: string
+### Responsabilidade
+Define os modelos de dados do sistema.
 
-            ---
+### Modelo Usuario
 
-            ## 🗄 database.py
+- id: inteiro
+- nome: string
+- email: string
+- senha_hash: string
 
-            ### Responsabilidade
-            Configuração de conexão com o banco de dados.
+---
 
-            ### Componentes
+## 🗄 database.py
 
-            - Engine SQLAlchemy
-            - Sessão de banco
-            - Base declarativa
+### Responsabilidade
+Configuração de conexão com o banco de dados.
 
-            ---
+### Componentes
 
-            ## 🔄 Fluxo Geral do Sistema
+- Engine SQLAlchemy
+- Sessão de banco
+- Base declarativa
 
-            1. Cliente envia requisição
-            2. API processa na camada de rota
-            3. Serviço executa regra de negócio
-            4. Banco de dados é acessado se necessário
-            5. Resposta é retornada ao cliente
+---
 
-            ---
+## 🔄 Fluxo Geral do Sistema
 
-            ## 🛡 Segurança
+1. Cliente envia requisição
+2. API processa na camada de rota
+3. Serviço executa regra de negócio
+4. Banco de dados é acessado se necessário
+5. Resposta é retornada ao cliente
 
-            - Senhas armazenadas com hash
-            - Autenticação via JWT
-            - Validação de dados de entrada
-            `
+---
+
+## 🛡 Segurança
+
+- Senhas armazenadas com hash
+- Autenticação via JWT
+- Validação de dados de entrada`
         }
+    },
+
+    methods:{
+        autoResize() {
+            const el = this.$refs.textarea
+            el.style.height = "auto"          // reseta altura
+            el.style.height = el.scrollHeight + "px" // ajusta para conteúdo
+        }   
     },
 
     computed:{
         wikiFormatado(){
             return marked(this.wiki)
         }
+    },
+
+    mounted(){
+        this.$nextTick(() => {this.autoResize()})   
     }
 }
 </script>
@@ -162,21 +179,34 @@ export default{
     top: 15px;
 }
 
+.fundo-textarea{
+    background-color: black;
+    background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
+    background-size: 30px 30px;
+    margin-top: 40px;
+    padding: 40px 0 40px 0;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
 .texto-resposta{
     font-size: 15px;
     font-weight: 500;
     color: var(--cor-fundo-2);
     width: 100%;
-    text-align: start;
-    margin-top: 40px;
+    height: auto;
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    padding: 20px 40px 60px 40px;
+    resize: none;
+    overflow: hidden;
 }
 
-.texto-resposta :deep(pre){
-    background-color: black;
-    border-radius: 10px;
-    padding: 40px 0 40px 0;
-    background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
-    background-size: 30px 30px;
+textarea:focus {
+    border: none;
+    outline: none;
 }
 
 @keyframes surgir {

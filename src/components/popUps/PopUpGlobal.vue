@@ -76,7 +76,7 @@ export default {
 
     60% {
         opacity: 1;
-        transform: translateX(-4px);
+        transform: translateX(-10px);
     }
 
     100% {

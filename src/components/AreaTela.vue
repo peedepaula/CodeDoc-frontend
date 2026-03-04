@@ -1,5 +1,6 @@
 <template>
     <div class="area">
+        <p class="area-link" @click="setouTela('seu-projeto')" :class="{'ativo': tela === 'seu-projeto'}">Seu projeto</p>
         <p class="area-link" @click="setouTela('readme')" :class="{'ativo': tela === 'readme'}">Readme</p>
         <p class="area-link" @click="setouTela('wiki')" :class="{'ativo': tela === 'wiki'}">Wiki</p>
         <p class="area-link" @click="setouTela('diagramas')" :class="{'ativo': tela === 'diagramas'}">diagramas de fluxo</p>
@@ -12,7 +13,7 @@ export default{
     name: 'AreaTela',
     data(){
         return{
-            tela: 'readme'
+            tela: 'seu-projeto'
         }
     },
 

@@ -1,8 +1,14 @@
 <template>
     <section class="corpo-readme">
         <h3 class="titulo">Readme</h3>
-        <p class="texto-resposta" v-html="readmeFormatado"></p>
-
+        <div class="fundo-textarea">
+            <textarea class="texto-resposta"
+            v-model="readme"
+            @input="autoResize"
+            ref="textarea"
+            >
+            </textarea>
+        </div>
         <Copiar
         :textoParaCopiar="readme"
         />
@@ -19,36 +25,47 @@ export default{
     },
     data(){
         return{
-            readme: `
-            # Sistema de Cadastro
+            readme:
+`# Sistema de Cadastro
 
-            Este projeto é um sistema desenvolvido em Python utilizando FastAPI.
+Este projeto é um sistema desenvolvido em Python utilizando FastAPI.
 
-            ## Funcionalidades
+## Funcionalidades
 
-            - Cadastro de usuários
-            - Login com autenticação JWT
-            - Listagem de registros
+- Cadastro de usuários
+- Login com autenticação JWT
+- Listagem de registros
 
-            ## Estrutura do Projeto
+## Estrutura do Projeto
 
-            - main.py: Arquivo principal da aplicação
-            - auth_service.py: Lógica de autenticação
-            - models.py: Modelos de dados
+- main.py: Arquivo principal da aplicação
+- auth_service.py: Lógica de autenticação
+- models.py: Modelos de dados
 
-            ## Como executar
+## Como executar
 
-            1. Instale as dependências
-            2. Execute o servidor
-            3. Acesse localhost:8000
-            `
+1. Instale as dependências
+2. Execute o servidor
+3. Acesse localhost:8000`
         }
+    },
+
+    methods:{
+        autoResize() {
+            const el = this.$refs.textarea
+            el.style.height = "auto"          // reseta altura
+            el.style.height = el.scrollHeight + "px" // ajusta para conteúdo
+        }   
     },
 
     computed:{
         readmeFormatado(){
             return marked(this.readme)
         }
+    },
+
+    mounted(){
+        this.$nextTick(() => {this.autoResize()})   
     }
 }
 </script>
@@ -78,21 +95,34 @@ export default{
     top: 15px;
 }
 
+.fundo-textarea{
+    background-color: black;
+    background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
+    background-size: 30px 30px;
+    margin-top: 40px;
+    padding: 40px 0 40px 0;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
 .texto-resposta{
     font-size: 15px;
     font-weight: 500;
     color: var(--cor-fundo-2);
     width: 100%;
-    text-align: start;
-    margin-top: 40px;
+    height: auto;
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    padding: 20px 40px 60px 40px;
+    resize: none;
+    overflow: hidden;
 }
 
-.texto-resposta :deep(pre){
-    background-color: black;
-    border-radius: 10px;
-    padding: 40px 0 40px 0;
-    background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
-    background-size: 30px 30px;
+textarea:focus {
+    border: none;
+    outline: none;
 }
 
 @keyframes surgir {

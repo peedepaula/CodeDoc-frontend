@@ -1,17 +1,17 @@
 <template>
     <section class="corpo-pop-up">
-        <h3 class="titulo">Conta</h3>
-        <img src="@/assets/sair.png" class="x" @click="$emit('fechar-conta-apagar')">
+        <h3 class="titulo">Projeto</h3>
+        <img src="@/assets/sair.png" class="x" @click="$emit('fechar-apagar-projeto')">
         <div class="textos">
-            <h4 class="titulo-pop-up">Apagar conta?</h4>
-            <p class="detalhe-pop-up">Você tem certeza que deseja apagar sua conta? Ao apagar você terá como recuperar seus dados novamente.</p>
+            <h4 class="titulo-pop-up">Apagar projeto?</h4>
+            <p class="detalhe-pop-up">Você tem certeza que deseja apagar seu projeto? Ao apagar você não terá como recuperar seus dados novamente.</p>
         </div>
         <button class="botao-pop-up">Apagar</button>
     </section>
 </template>
 <script>
 export default{
-    name: 'ConfirmacaoApagar'
+    name: 'ConfirmacaoApagarProjeto'
 }
 </script>
 <style scoped>

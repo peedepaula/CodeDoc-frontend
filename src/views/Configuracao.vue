@@ -40,8 +40,8 @@
 <script>
 import ConfiguracaoComp from '@/components/ConfiguracaoComp.vue';
 import Historico from '@/components/Historico.vue';
-import ConfirmacaoApagar from '@/components/PopUps/ConfirmacaoApagar.vue';
-import ConfirmacaoSair from '@/components/PopUps/ConfirmacaoSair.vue';
+import ConfirmacaoApagar from '@/components/PopUps/ConfirmacaoApagarConta.vue';
+import ConfirmacaoSair from '@/components/PopUps/ConfirmacaoSairConta.vue';
 import TrocarEmail from '@/components/PopUps/TrocarEmail.vue';
 import TrocarSenha from '@/components/PopUps/TrocarSenha.vue';
 
