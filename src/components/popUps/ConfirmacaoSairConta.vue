@@ -6,12 +6,18 @@
             <h4 class="titulo-pop-up">Sair da conta?</h4>
             <p class="detalhe-pop-up">Você tem certeza que deseja sair da conta? Ao sair você terá que fazer login novamente.</p>
         </div>
-        <button class="botao-pop-up">Sair</button>
+        <button class="botao-pop-up" @click="saisDaConta">Sair</button>
     </section>
 </template>
 <script>
 export default{
-    name: 'ConfirmacaoSair'
+    name: 'ConfirmacaoSair',
+    methods:{
+        saisDaConta(){
+            localStorage.removeItem('token_sufla');
+            this.$router.push('/login');
+        },
+    }
 }
 </script>
 <style scoped>

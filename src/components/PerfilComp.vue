@@ -14,12 +14,12 @@
         <div class="atualizar-dados">
             <div class="input-p">
                 <p class="p-input">Seu nome:</p>
-                <input type="text" class="input" placeholder="Digite seu nome..." v-model="nome">
+                <input type="text" class="input" placeholder="Digite seu nome..." v-model="usuario.nome">
             </div>
 
             <div class="input-p">
                 <p class="p-input">Seu cargo:</p>
-                <input type="text" class="input" placeholder="Digite seu cargo..." v-model="cargo">
+                <input type="text" class="input" placeholder="Digite seu cargo..." v-model="usuario.cargo">
             </div>
 
             <div class="input-p">
@@ -35,19 +35,22 @@
                 >
             </div>
         </div>
-        <button class="salvar">Salvar</button>
+        <button class="salvar" @click="atualizarPerfil">Salvar</button>
     </section>
 
 </template>
 <script>
 import fotoPerfil from '@/assets/foto-falsa.jpg'
+import api from '@/services/api';
 
 export default{
     name: 'PerfilComp',
     data(){
         return{
-            nome: 'Pedro de paula',
-            cargo: 'Programador',
+            usuario:{
+                nome: '',
+                cargo: ''
+            },
             fotoPerfil
         }
     },
@@ -58,7 +61,30 @@ export default{
                 console.log("Arquivo selecionado:", arquivo.name);
                 this.fotoPerfil = URL.createObjectURL(arquivo)
             }
+        },
+
+        async buscarPerfil(){
+            try{
+                const { data } = await api.get(`/usuario/me`)
+                this.usuario.nome = data.nome
+                this.usuario.cargo = data.nome
+            }
+            catch(err){
+                console.log(err)
+            }
+        },
+
+        async atualizarPerfil(){
+            try{
+                await api.patch(`/usuario/atualizar-nome-cargo`, {'nome_usuario': this.usuario.nome, 'cargo_usuario': this.usuario.cargo,})
+            }
+            catch(err){
+                console.log(err)
+            }
         }
+    },
+    mounted(){
+        this.buscarPerfil()
     }
 }
 </script>

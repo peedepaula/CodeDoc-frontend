@@ -4,19 +4,19 @@
         <div class="area-dados">
             <div class="input-p">
                 <p class="p-input">E-mail:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com">
+                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="usuarioLogin.email">
             </div>
 
             <div class="input-p">
                 <p class="p-input">Senha:</p>
                 <div class="input-icon">
-                    <input :type="mostrarSenha? 'text': 'password'" class="input" placeholder="Sua senha...">
+                    <input :type="mostrarSenha? 'text': 'password'" class="input" placeholder="Sua senha..." v-model="usuarioLogin.senha">
                     <img :src="olhoAberto" v-if="!mostrarSenha" @click="mostraEsconderSenha" class="olho">
                     <img :src="olhoFechado" v-else @click="mostraEsconderSenha" class="olho">
                 </div>
                 <router-link to="/esqueceu-senha" class="detalhe">Esqueceu a senha? clique aqui para redefinir.</router-link>
             </div>
-            <button class="entrar" onclick="window.location='/dashboard'">Entrar</button>
+            <button class="entrar" @click="fazerLogin">Entrar</button>
         </div>
         <router-link to="/registrar" class="detalhe-2">Ainda não tem conta? <span class="grosso">Clique aqui pra criar uma.</span></router-link>
     </section>
@@ -24,6 +24,7 @@
 <script>
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
+import api, { TOKEN_KEY } from '@/services/api';
 
 export default{
     name: 'LoginComp',
@@ -31,13 +32,35 @@ export default{
         return{
             olhoAberto,
             olhoFechado,
-            mostrarSenha: false
+            mostrarSenha: false,
+            usuarioLogin:{
+                email: '',
+                senha: ''
+            }
         }
     },
 
     methods:{
         mostraEsconderSenha(){
             this.mostrarSenha = !this.mostrarSenha
+        },
+
+        async fazerLogin() {
+            try {
+                // Faz a requisição diretamente aqui
+                const response = await api.post("/usuario/entrar", {
+                email_usuario: this.usuarioLogin.email,
+                senha_usuario: this.usuarioLogin.senha
+                });
+
+                // Salva o token no localStorage
+                localStorage.setItem(TOKEN_KEY, response.data.access_token);
+
+                // Redireciona para o dashboard
+                this.$router.push("/dashboard");
+            } catch (error) {
+                alert("Erro no login: " + (error.response?.data.detail || error.message));
+            }
         }
     }
 }

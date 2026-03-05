@@ -4,13 +4,7 @@
         <div class="historico">
             <p class="sessao-historico">Histórico</p>
             <div class="historico-conteudo">
-                <p class="titlo-historico">Documentação programa</p>
-                <p class="titlo-historico">Projeto cinema</p>
-                <p class="titlo-historico">Teste de tal coisa</p>
-                <p class="titlo-historico">Hoje não</p>
-                <p class="titlo-historico">Fazer festa</p>
-                <p class="titlo-historico">Tentar jogar</p>
-                <p class="titlo-historico">Fazer o documento</p>
+                <p class="titlo-historico" v-for="documento in historico">{{ documento.nome }}</p>
             </div>
         </div>
 
@@ -42,13 +36,31 @@
 
 <script>
 import fotoFalsa from '@/assets/foto-falsa.jpg'
+import api from '@/services/api';
 
 export default{
     name: 'Historico',
     data(){
         return{
-            fotoFalsa
+            fotoFalsa,
+            historico: []
         }
+    },
+    methods:{
+        async buscarHistorico(){
+            try{
+                const { data } = await api.get(`/documentacao/historico`)
+                console.log(data)
+                this.historico = Object.entries(data).map(([id, nome]) => ({ id, nome }));
+            }
+            catch(err){
+                console.error(err)
+            }
+        }
+    },
+
+    mounted(){
+        this.buscarHistorico()
     }
 }
 </script>
@@ -100,13 +112,17 @@ export default{
     max-height: 380px;
     overflow-y: auto;
     margin-left: 10px;
+    overflow-x: hidden;
 }
 
 .titlo-historico{
     font-size: 13px;
     font-weight: 500;
     color: var(--cor-texto);
-    width: fit-content;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: all ease 0.3s;
     cursor: pointer;
     user-select: none;

@@ -5,7 +5,7 @@
             <div class="linha">
                 <div class="input-p">
                     <p class="p-input">E-mail:</p>
-                    <input type="text" class="input" placeholder="Seu E-mail.." v-model="email" disabled>
+                    <input type="text" class="input" placeholder="Seu E-mail.." v-model="usuario.email" disabled>
                 </div>
                 <button class="botao" @click="$emit('mostrar-trocar-email')">Trocar E-mail</button>
             </div>
@@ -13,7 +13,7 @@
             <div class="linha">
                 <div class="input-p">
                     <p class="p-input">Senha:</p>
-                    <input type="password" class="input" placeholder="Sua senha..." v-model="senha" disabled>
+                    <input type="password" class="input" placeholder="Sua senha..." v-model="usuario.senha" disabled>
                 </div>
                 <button class="botao" @click="$emit('mostrar-trocar-senha')">Trocar senha</button>
             </div>
@@ -36,13 +36,32 @@
 
 </template>
 <script>
+import api from '@/services/api';
+
 export default{
     name: 'ConfiguracaoComp',
     data(){
         return{
-            email: 'peedepaula13@gmail.com',
-            senha: '**********'
+            usuario:{
+                email: '',
+                senha: '**********'
+            }
         }
+    },
+    methods:{
+        async buscarPerfil(){
+            try{
+                const { data } = await api.get(`/usuario/me`)
+                this.usuario.email = data.email_usuario
+            }
+            catch(err){
+                console.log(err)
+            }
+        }
+    },
+
+    mounted(){
+        this.buscarPerfil()
     }
 }
 </script>

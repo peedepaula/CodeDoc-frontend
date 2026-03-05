@@ -43,14 +43,16 @@ export default{
     data(){
         return{
             telaAtual: '',
-            mostrarConfirmacaoApagarProjeto: false
+            mostrarConfirmacaoApagarProjeto: false,
+            historico: []
         }
     },
 
     methods:{
         setarTela(tela){
             this.telaAtual = tela
-        }
+        },
+
     }
 }
 </script>
