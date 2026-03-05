@@ -4,18 +4,10 @@
             ref="textarea"
             v-model="mensagem"
             class="mensagem"
-            placeholder="Cole seu código ou link do repositório do github ou o arquivo zip..."
+            placeholder="Digite o link do repositório do github..."
             @input="autoResize"
             rows="1"
         ></textarea>
-        <button class="pegar-arquivo" @click="$refs.fileInput.click()">
-            <img src="@/assets/arquivo.png" class="icon-arquivo">
-        </button>
-        <input type="file"
-        style="display: none;"
-        ref="fileInput"
-        @change="handleFileUpload"
-        >
         <button class="enviar" @click="mostrarPopUp('concluido', 'ainda cria', 'ainda meu cria')">
             <img src="@/assets/enviar.png" class="icon-enviar">
         </button>
@@ -40,13 +32,6 @@ export default {
 
             el.style.height = 'auto'
             el.style.height = Math.min(el.scrollHeight, 200) + 'px'
-        },
-
-        handleFileUpload(event) {
-            const arquivo = event.target.files[0];
-            if (arquivo) {
-                console.log("Arquivo selecionado:", arquivo.name);
-            }
         }
     }
 }
@@ -80,31 +65,6 @@ export default {
     color: #898989;
     border: solid 1px var(--cor-borda);
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
-}
-
-.pegar-arquivo{
-    height: 40px;
-    width: 40px;
-    background-color: var(--cor-tema);
-    border: none;
-    border-radius: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all ease 0.3s;
-    align-self: flex-end;
-    border: solid 1px var(--cor-tema);
-}
-
-.pegar-arquivo:hover{
-    transform: translateY(-2px);
-}
-
-.icon-arquivo{
-    width: 15px;
-    height: 15px;
-    filter: brightness(0) invert(1);
 }
 
 .enviar{

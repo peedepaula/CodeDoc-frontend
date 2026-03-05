@@ -4,7 +4,7 @@
         <div class="area-dados">
             <div class="input-p">
                 <p class="p-input">Nome:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="criarConta.nome">
+                <input type="text" class="input" placeholder="Ex: seu nome" v-model="criarConta.nome">
             </div>
 
             <div class="input-p">
