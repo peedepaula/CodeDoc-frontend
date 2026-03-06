@@ -38,9 +38,20 @@ export default{
             immediate: true,
             handler(glossario){
                 if (glossario){
-                    this.glossarioReal = glossario
+                    const lista = JSON.parse(glossario)
+
+                    this.glossarioReal = lista
+                    .map(item => `${item.termo}: ${item.definicao}`)
+                    .join("\n\n")
                 }
             }
+        },
+
+        glossarioReal(novoValor){
+            this.$nextTick(() => {
+                this.autoResize()
+            })
+            this.$emit('update-dados', {glossario_projeto: novoValor})
         }
     },
 

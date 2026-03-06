@@ -3,7 +3,7 @@
         <h3 class="titulo">Sua conta</h3>
         <div class="foto-nome-profissao">
             <div class="img">
-                <img :src="fotoPerfil" class="img-real" v-if="fotoPerfil">
+                <img :src="usuario.foto" class="img-real" v-if="usuario.foto">
                 <img src="@/assets/camera.png" class="sem-foto" v-else>
             </div>
             <div class="textos">
@@ -25,7 +25,7 @@
             <div class="input-p">
                 <p class="p-input">Foto perfil:</p>
                 <div class="botao-linha">
-                    <img :src="fotoPerfil" class="mini-foto-preview">
+                    <img :src="usuario.foto" class="mini-foto-preview">
                     <button class="buscar" @click="$refs.fileInput.click()">Buscar</button>
                 </div>
                 <input type="file"
@@ -49,17 +49,33 @@ export default{
         return{
             usuario:{
                 nome: '',
-                cargo: ''
+                cargo: '',
+                foto: ''
             },
-            fotoPerfil
         }
     },
     methods:{
-        handleFileUpload(event) {
+        async handleFileUpload(event) {
             const arquivo = event.target.files[0];
             if (arquivo) {
-                console.log("Arquivo selecionado:", arquivo.name);
-                this.fotoPerfil = URL.createObjectURL(arquivo)
+                this.fotoPerfilPreview = URL.createObjectURL(arquivo); // Para ver o preview na hora
+                
+                // Criar o formulário para enviar o arquivo
+                const formData = new FormData();
+                formData.append('foto', arquivo);
+
+                try {
+                    const response = await api.patch('/usuario/trocar-foto', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                    // Atualiza a foto real com a URL que o back retornou
+                    this.foto_usuario = response.data.url;
+                    alert("Foto atualizada!");
+                } catch (err) {
+                    console.error("Erro ao subir foto", err);
+                }
             }
         },
 
@@ -68,6 +84,7 @@ export default{
                 const { data } = await api.get(`/usuario/me`)
                 this.usuario.nome = data.nome
                 this.usuario.cargo = data.nome
+                this.usuario.foto = data.foto
             }
             catch(err){
                 console.log(err)

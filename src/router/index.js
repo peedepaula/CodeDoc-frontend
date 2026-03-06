@@ -62,7 +62,7 @@ const router = createRouter({
       meta: {esconderHistorico: true}
     },
     {
-      path: '/nova-senha',
+      path: '/nova-senha/:token',
       name: "Senha trocada",
       component: () => import('../views/SenhaTrocada.vue'),
       meta: {esconderHistorico: true}

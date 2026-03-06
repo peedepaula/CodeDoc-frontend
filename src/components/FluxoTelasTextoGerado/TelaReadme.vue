@@ -41,6 +41,13 @@ export default{
                     this.readmeReal = readme
                 }
             }
+        },
+
+        readmeReal(novoValor){
+            this.$nextTick(() => {
+                this.autoResize()
+            })
+            this.$emit('update-dados', { readme_projeto: novoValor });
         }
     },
 

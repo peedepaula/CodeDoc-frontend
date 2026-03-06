@@ -37,7 +37,7 @@
             @click="DocumentoSelecionado=null"
             >
                 <div class="foto-usuario">
-                    <img :src="fotoFalsa" class="foto-real" v-if="fotoFalsa">
+                    <img :src="usuario.foto" class="foto-real" v-if="usuario.foto">
                     <img src="@/assets/camera.png" class="sem-foto" v-else>
                 </div>
                 <div class="detalhes">
@@ -62,7 +62,8 @@ export default{
             historico: [],
             usuario:{
                 nome: '',
-                cargo: ''
+                cargo: '',
+                foto: ''
             },
             DocumentoSelecionado: null
         }
@@ -89,6 +90,7 @@ export default{
                 const { data } = await api.get(`/usuario/me`)
                 this.usuario.nome = data.nome
                 this.usuario.cargo = data.nome
+                this.usuario.foto = data.foto
             }
             catch(err){
                 console.log(err)

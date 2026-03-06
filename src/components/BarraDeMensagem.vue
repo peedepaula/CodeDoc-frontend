@@ -45,7 +45,12 @@ export default {
             }
 
             catch(err){
-                console.error
+                console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar criar a documentação."
+                )
             }
         },
 

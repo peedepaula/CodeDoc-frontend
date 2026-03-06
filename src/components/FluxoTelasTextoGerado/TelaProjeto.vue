@@ -1,6 +1,6 @@
 <template>
     <section class="corpo-projeto">
-        <h3 class="titulo">Documentação</h3>
+        <h3 class="titulo">Projeto</h3>
         <div class="conteudo">
             <!-- <h1 class="nome-projeto">Documentação programa</h1> -->
              <div class="nome-bola">
@@ -22,8 +22,8 @@
         </div>
         <p class="data">{{ formatarData(dataCriacao) }}</p>
         <div class="botoes">
-            <button class="botao-apagar" @click="$emit('mostrar-apagar-projeto', id)" v-if="titulo !== 'Processando...'">Apagar</button>
-            <button class="botao-salvar" v-if="titulo !== 'Processando...'">Salvar</button>
+            <button class="botao-apagar" @click="$emit('mostrar-apagar-projeto', id)" v-if="titulo !== 'Processando...'"><img src="@/assets/lixeira.png" class="icon-lixeira"></button>
+            <button class="botao-salvar" v-if="titulo !== 'Processando...'" @click="$emit('salvar')">Salvar</button>
         </div>
     </section>
 
@@ -79,6 +79,13 @@ export default{
                     this.id = id
                 }
             } 
+        },
+
+        nomeProjeto(novoValor) {
+            this.$emit('update-dados', { titulo_projeto: novoValor });
+        },
+        descricaoProjeto(novoValor) {
+            this.$emit('update-dados', { descricao_projeto: novoValor });
         }
     },
 
@@ -207,20 +214,32 @@ textarea:focus {
 
 .botao-apagar{
     height: 35px;
+    width: 35px;
     border: solid 1px var(--cor-erro);
     color: var(--cor-erro);
     background-color: var(--cor-fundo-2);
-    padding: 0 32px 0 32px;
     border-radius: 100px;
     cursor: pointer;
     transition: all ease 0.3s;
     font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .botao-apagar:hover{
     transform: translateY(-2px);
     background-color: var(--cor-erro);
     color: var(--cor-fundo-2);
+}
+
+.icon-lixeira{
+    width: 15px;
+    height: auto;
+}
+
+.botao-apagar:hover .icon-lixeira{
+    filter: brightness(0) invert(1);
 }
 
 .botao-salvar{

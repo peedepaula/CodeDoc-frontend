@@ -25,6 +25,11 @@
                 </div>
             </section>
         </section>
+        <footer class="footer">
+            <div class="direitos">
+                <p class="p-direitos">© 2026 CodeDoc. Todos os direitos reservados.</p>
+            </div>
+        </footer>
     </main>
 </template>
 
@@ -167,5 +172,31 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.footer{
+    width: 100%;
+    height: 500px;
+    background-color: var(--cor-fundo-2);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 70px;
+}
+
+.direitos{
+    height: 70px;
+    width: 100%;
+    border-top: solid 1px var(--cor-tema);
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-direitos{
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cor-tema);
 }
 </style>

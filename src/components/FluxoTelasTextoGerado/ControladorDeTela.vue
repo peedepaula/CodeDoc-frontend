@@ -7,16 +7,20 @@
         :data="data"
         :id="id"
         @mostrar-apagar-projeto="setarProjetoApagar"
+        @update-dados="sincronizarMudancas"
+        @salvar="atualizarDocumento"
         />
 
         <TelaReadme
         v-if="tela === 'readme' && Object.keys(documento).length > 0"
         :readme="readme"
+        @update-dados="sincronizarMudancas"
         />
 
         <TelaWiki
         v-if="tela === 'wiki' && Object.keys(documento).length > 0"
         :wiki="wiki"
+        @update-dados="sincronizarMudancas"
         />
 
         <TelaDiagramas
@@ -27,6 +31,7 @@
         <TelaGlossario
         v-if="tela === 'glossario' && Object.keys(documento).length > 0"
         :glossario="glossario"
+        @update-dados="sincronizarMudancas"
         />
 
         <SemDocumento
@@ -44,6 +49,7 @@ import TelaGlossario from './TelaGlossario.vue';
 import TelaProjeto from './TelaProjeto.vue';
 import TelaReadme from './TelaReadme.vue';
 import TelaWiki from './TelaWiki.vue';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
     name: 'ControladorDeTela',
@@ -65,7 +71,9 @@ export default{
             diagramas: null,
             glossario: null,
             data: null,
-            id: null
+            id: null,
+
+            projetoEditado: {}
 
         }
     },
@@ -102,8 +110,35 @@ export default{
             this.$emit('mostrar-apagar-projeto', projetoApagar)
         },
 
-        async atualizarDocumento(){
-           const { data } = await api.patch(`/documentacao/atualizar`)
+        sincronizarMudancas(fragmento) {
+            this.projetoEditado = { ...this.projetoEditado, ...fragmento }
+            console.log(fragmento)
+        },
+
+        async atualizarDocumento() {
+            console.log("Fui")
+            if (Object.keys(this.projetoEditado).length === 0) return;
+
+            try {
+                const { data } = await api.patch(
+                    `/documentacao/atualizar?id_projeto=${this.id}`, 
+                    this.projetoEditado
+                );
+                mostrarPopUp(
+                    "concluido",
+                    "Projeto salvo.",
+                    "Projeto salvo com sucesso."
+                )
+                this.projetoEditado = {};
+
+            } catch (err) {
+                console.error(err);
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar salvar o projeto."
+                )
+            }
         }
     }
 }

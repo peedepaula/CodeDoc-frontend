@@ -47,23 +47,24 @@ export default {
   },
 
   watch: {
-    diagramas: {
-      deep: true,
-      handler() {
-        this.$nextTick(() => {
-          this.renderDiagrams()
-        })
-      }
+    diagramas() {
+      this.renderDiagrams()
     }
   },
 
   methods: {
-    renderDiagrams() {
-      this.diagramasArray.forEach((_, index) => {
-        const el = document.getElementById(`diagram-${index}`)
-        if (el) mermaid.init(undefined, el)
-      })
-    }
+  async renderDiagrams() {
+    await this.$nextTick()
+
+    this.diagramasArray.forEach((_, index) => {
+      const el = document.getElementById(`diagram-${index}`)
+
+      if (el) {
+        el.removeAttribute("data-processed") // força reprocessar
+        mermaid.init(undefined, el)
+      }
+    })
+  }
   }
 }
 </script>

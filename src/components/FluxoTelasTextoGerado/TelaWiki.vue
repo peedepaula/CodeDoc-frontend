@@ -41,6 +41,13 @@ export default{
                     this.wikiReal = wiki
                 }
             }
+        },
+
+        wikiReal(novoValor){
+            this.$nextTick(() => {
+                this.autoResize()
+            })
+            this.$emit('update-dados', {wiki_projeto: novoValor})
         }
     },
 
