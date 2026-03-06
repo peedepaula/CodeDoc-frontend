@@ -27,7 +27,7 @@
                     <img :src="olhoFechado" v-else @click="mostraEsconderSenha" class="olho">
                 </div>
             </div>
-            <button class="entrar">Registrar</button>
+            <button class="entrar" @click="registrarUsuario">Registrar</button>
         </div>
         
         <router-link to="/login" class="detalhe-2">Já tem conta? <span class="grosso">Clique aqui pra entrar.</span></router-link>
@@ -36,6 +36,7 @@
 <script>
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
+import api from '@/services/api';
 
 export default{
     name: 'RegistrarComp',
@@ -56,6 +57,40 @@ export default{
     methods:{
         mostraEsconderSenha(){
             this.mostrarSenha = !this.mostrarSenha
+        },
+
+        async registrarUsuario(){
+
+            if(this.senhaFraca){
+                alert("A senha não atende aos requisitos.")
+                return
+            }
+
+            if(this.criarConta.senha !== this.senhaNovamente){
+                alert("As senhas não coincidem.")
+                return
+            }
+
+            try{
+                await api.post("/usuario/registrar", {
+
+                    nome_usuario: this.criarConta.nome,
+                    email_usuario: this.criarConta.email,
+                    senha_usuario: this.criarConta.senha
+
+                })
+
+                alert("Conta criada com sucesso!")
+
+                this.$router.push("/login")
+
+            }
+            catch(error){
+
+                alert("Erro ao registrar: " + (error.response?.data.detail || error.message))
+
+            }
+
         }
     },
 

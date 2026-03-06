@@ -1,20 +1,18 @@
 <template>
     <div class="corpo-barra-mensagem">
-        <textarea
-            ref="textarea"
+        <input
             v-model="mensagem"
             class="mensagem"
-            placeholder="Digite o link do repositório do github..."
-            @input="autoResize"
-            rows="1"
-        ></textarea>
-        <button class="enviar" @click="mostrarPopUp('concluido', 'ainda cria', 'ainda meu cria')">
+            placeholder="Digite o link do repositório do github...">
+
+        <button class="enviar" @click="criarDocumento">
             <img src="@/assets/enviar.png" class="icon-enviar">
         </button>
     </div>
 </template>
 
 <script>
+import api from '@/services/api';
 import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default {
@@ -26,12 +24,34 @@ export default {
     },
     methods: {
         mostrarPopUp,
-        
-        autoResize() {
-            const el = this.$refs.textarea
 
-            el.style.height = 'auto'
-            el.style.height = Math.min(el.scrollHeight, 200) + 'px'
+        async criarDocumento(){
+            if(!this.linkValido(this.mensagem)){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "O link é inválido."
+                )
+                return
+            }
+            try{
+                const { data } = await api.post(`/documentacao/criar`, {"github_url": this.mensagem})
+                mostrarPopUp(
+                    "concluido",
+                    "Criando.",
+                    "Criando documentação! Isso pode levar alguns segundos."
+                )
+                this.$emit('projeto-criado', data)
+            }
+
+            catch(err){
+                console.error
+            }
+        },
+
+        linkValido(url) { 
+            const githubRegex = /^(https?:\/\/)?(www\.)?github\.com\/[\w-]+\/?/i;
+            return githubRegex.test(url);
         }
     }
 }
@@ -53,11 +73,10 @@ export default {
 
 .mensagem{
     width: 500px;
-    min-height: 40px;
-    max-height: 200px;
+    height: 40px;
     background-color: var(--cor-fundo-2);
     border: none;
-    border-radius: 20px;
+    border-radius: 100px;
     box-sizing: border-box;
     padding: 12px;
     resize: none;

@@ -1,46 +1,72 @@
 <template>
-    <section class="corpo-diagrama">
-        <h3 class="titulo">Diagramas</h3>
-        <div class="diagrama-titulo" v-for="n in 4">
-            <h4 class="titulo-diagrama">Cadastro</h4>
-            <div id="diagramas"
-                class="mermaid diagrama"
-                v-html="codigoDiagrama"
-                >
-            </div>
-        </div>
+<section class="corpo-diagrama">
+  <h3 class="titulo">Diagramas</h3>
 
+  <div
+    class="diagrama-titulo"
+    v-for="(d, index) in diagramasArray"
+    :key="index"
+  >
+    <h4 class="titulo-diagrama">Diagrama - {{ index + 1 }}</h4>
 
-    </section>
+    <div
+      :id="`diagram-${index}`"
+      class="mermaid diagrama"
+    >
+      {{ d }}
+    </div>
+
+  </div>
+
+</section>
 </template>
 <script>
 import mermaid from "mermaid"
 
-export default{
-    name: 'TelaDiagrama',
+export default {
+  name: 'TelaDiagrama',
 
-    data(){
-        return{
-            codigoDiagrama: `
-            flowchart TD
-                A[Início] --> B[Login]
-                B --> C{Credenciais válidas?}
-                C -->|Sim| D[Gerar JWT]
-                C -->|Não| E[Erro]
-                D --> F[Fim]
-            `
-        }
-    },
-
-    mounted() {
-        mermaid.initialize({ startOnLoad: false })
-        this.$nextTick(() => {
-            mermaid.run()
-        })
+  props: {
+    diagramas: {
+      type: [String, Array],
+      default: () => []
     }
+  },
+
+  computed: {
+    diagramasArray() {
+      if (Array.isArray(this.diagramas)) return this.diagramas
+      if (typeof this.diagramas === 'string') return [this.diagramas]
+      return []
+    }
+  },
+
+  mounted() {
+    mermaid.initialize({ startOnLoad: false })
+    this.renderDiagrams()
+  },
+
+  watch: {
+    diagramas: {
+      deep: true,
+      handler() {
+        this.$nextTick(() => {
+          this.renderDiagrams()
+        })
+      }
+    }
+  },
+
+  methods: {
+    renderDiagrams() {
+      this.diagramasArray.forEach((_, index) => {
+        const el = document.getElementById(`diagram-${index}`)
+        if (el) mermaid.init(undefined, el)
+      })
+    }
+  }
 }
 </script>
-
 <style scoped>
 .corpo-diagrama{
     width: 100%;

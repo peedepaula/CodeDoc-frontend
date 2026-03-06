@@ -1,8 +1,15 @@
 <template>
     <div class="corpo-principal">
-        <Historico v-if="!$route.meta.esconderHistorico"/>
+        <Historico
+        v-if="!$route.meta.esconderHistorico"
+        @projeto-selecionado="setarProjeto"
+        @novo-documento="projetoSetado = null"
+        />
         <div class="corpo-principal-real">
-            <RouterView/>
+            <RouterView
+            :projetoSetado="projetoSetado"
+
+            />
         
             <!-- PopUps -->
             <Copiado/>
@@ -23,6 +30,17 @@ export default{
         Copiado,
         Historico,
         PopUpGlobal
+    },
+    data(){
+        return{
+            projetoSetado: null
+        }
+    },
+
+    methods:{
+        setarProjeto(projetoId){
+            this.projetoSetado = projetoId
+        }
     }
 }
 </script>

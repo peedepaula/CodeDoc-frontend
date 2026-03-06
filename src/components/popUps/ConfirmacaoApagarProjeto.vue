@@ -6,12 +6,37 @@
             <h4 class="titulo-pop-up">Apagar projeto?</h4>
             <p class="detalhe-pop-up">Você tem certeza que deseja apagar seu projeto? Ao apagar você não terá como recuperar seus dados novamente.</p>
         </div>
-        <button class="botao-pop-up">Apagar</button>
+        <button class="botao-pop-up" @click="apagarProjeto">Apagar</button>
     </section>
 </template>
 <script>
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
+
 export default{
-    name: 'ConfirmacaoApagarProjeto'
+    name: 'ConfirmacaoApagarProjeto',
+
+    props:{
+        projetoApagar: String
+    },
+
+    methods:{
+        async apagarProjeto(){
+            const id = this.projetoApagar
+            try{
+                await api.delete(`/documentacao/apagar?id_projeto=${id}`)
+                this.$emit('fechar-apagar-projeto')
+                mostrarPopUp(
+                    "concluido",
+                    "Projeto apagado",
+                    "Projeto apagado com sucesso."
+                )
+            }
+            catch(err){
+                console.error(err)
+            }
+        }
+    }
 }
 </script>
 <style scoped>

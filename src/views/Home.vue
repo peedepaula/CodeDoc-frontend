@@ -3,14 +3,21 @@
         <section class="conteudo">
             <section class="conteudo-real">
                 <AreaTela
+                v-if="Object.keys(documento).length > 0"
                 @setou-tela="setarTela"
                 />
                 <ControladorDeTela
                 :telaAtual="telaAtual"
-                @mostrar-apagar-projeto="mostrarConfirmacaoApagarProjeto=true"
+                :documento="documento"
+                @mostrar-apagar-projeto="setarPojetoApagar"
                 />
-                <BarraDeMensagem/>
-                <button class="baixar">
+                <BarraDeMensagem
+                v-if="Object.keys(documento).length === 0"
+                @projeto-criado="setarDocumento"
+                />
+                <button class="baixar"
+                v-if="Object.keys(documento).length > 0"
+                >
                     <img src="@/assets/download.png" class="icon-baixar">
                 </button>
             </section>
@@ -18,6 +25,7 @@
         <section class="pop-ups" v-if="mostrarConfirmacaoApagarProjeto">
             <ConfirmacaoApagarProjeto
             @fechar-apagar-projeto="mostrarConfirmacaoApagarProjeto=false"
+            :projetoApagar="projetoApagar"
             />
         </section>
     </main>
@@ -27,14 +35,13 @@
 import AreaTela from '@/components/AreaTela.vue';
 import BarraDeMensagem from '@/components/BarraDeMensagem.vue';
 import ControladorDeTela from '@/components/FluxoTelasTextoGerado/ControladorDeTela.vue';
-import Historico from '@/components/Historico.vue';
 import ConfirmacaoApagarProjeto from '@/components/PopUps/ConfirmacaoApagarProjeto.vue';
+import api from '@/services/api';
 
 export default{
     name: 'Home',
     components:{
         BarraDeMensagem,
-        Historico,
         AreaTela,
         ControladorDeTela,
         ConfirmacaoApagarProjeto
@@ -44,7 +51,26 @@ export default{
         return{
             telaAtual: '',
             mostrarConfirmacaoApagarProjeto: false,
-            historico: []
+            documento: {},
+            projetoApagar: null
+        }
+    },
+
+    props:{
+        projetoSetado: String
+    },
+
+    watch:{
+        projetoSetado:{
+            immediate: true,
+            handler(projetoId){
+                if(projetoId){
+                    this.buscarProjeto(projetoId)
+                }
+                else{
+                    this.documento = {}
+                }
+            }
         }
     },
 
@@ -52,6 +78,27 @@ export default{
         setarTela(tela){
             this.telaAtual = tela
         },
+
+        async buscarProjeto(id){
+            try{
+                const { data } = await api.get(`/documentacao/buscar?id_projeto=${id}`)
+                console.log(data)
+                this.documento = data
+            }
+
+            catch(err){
+                console.error(err)
+            }
+        },
+
+        setarDocumento(documento){
+            this.documento = documento
+        },
+
+        setarPojetoApagar(projetoApagar){
+            this.projetoApagar =projetoApagar
+            this.mostrarConfirmacaoApagarProjeto=true
+        }
 
     }
 }

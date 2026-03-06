@@ -20,10 +20,10 @@
             ></textarea>
 
         </div>
-        <p class="data">Criado em: 20/03/2026</p>
+        <p class="data">{{ formatarData(dataCriacao) }}</p>
         <div class="botoes">
-            <button class="botao-apagar" @click="$emit('mostrar-apagar-projeto')">Apagar</button>
-            <button class="botao-salvar">Salvar</button>
+            <button class="botao-apagar" @click="$emit('mostrar-apagar-projeto', id)" v-if="titulo !== 'Processando...'">Apagar</button>
+            <button class="botao-salvar" v-if="titulo !== 'Processando...'">Salvar</button>
         </div>
     </section>
 
@@ -33,15 +33,55 @@ export default{
     name: 'TelaProjeto',
     data(){
         return{
-            nomeProjeto: 'Documentação programa',
-            descricaoProjeto:
-`Quem se interessa por aprender a falar Português já pode contar com um ensino eficiente. Com os nossos métodos conseguimos ensinar, sobretudo alunos iniciantes, por meio de textos práticos, que favorecem a boa leitura e consequente compreensão do que é ensinado.
-
-Todo o aprendizado foi concebido com o objetivo de proporcionar uma forma inovadora e agradável de ensino, algo que foi estabelecido ao se empregar artigos de interesse geral que são voltados à construção de vocabulário e compreensão dos elementos gramaticais.
-
-Além de todas as facilidades já mencionadas, o aluno ainda terá seu aprendizado reforçado com o acesso a materiais em PDF e isso ocorrerá de forma gratuita.`
+            nomeProjeto: '',
+            descricaoProjeto: ``,
+            dataCriacao: '',
+            id: null
         }
     },
+
+    props:{
+        titulo: String,
+        descricao: String,
+        data: String,
+        id: String
+    },
+
+    watch:{
+        titulo:{
+            immediate: true,
+            handler(titulo){
+                if (titulo){
+                    this.nomeProjeto = titulo
+                }
+            }
+        },
+        descricao:{
+            immediate: true,
+            handler(descricao){
+                if (descricao){
+                    this.descricaoProjeto = descricao
+                }
+            }
+        },
+        data:{
+            immediate: true,
+            handler(data){
+                if (data){
+                    this.dataCriacao = data
+                }
+            }
+        },
+        id:{
+            immediate: true,
+            handler(id){
+                if (id){
+                    this.id = id
+                }
+            } 
+        }
+    },
+
 
     methods:{
         autoResize(el) {
@@ -49,7 +89,16 @@ Além de todas as facilidades já mencionadas, o aluno ainda terá seu aprendiza
 
             el.style.height = "0px"
             el.style.height = el.scrollHeight + "px"
-        }
+        },
+
+        formatarData(dataIso) {
+            if (!dataIso) return '';
+            const data = new Date(dataIso);
+            return new Intl.DateTimeFormat('pt-BR', {
+                dateStyle: 'short',
+                timeStyle: 'short',
+            }).format(data);
+        },
     },
 
     mounted(){

@@ -4,29 +4,45 @@
         <div class="historico">
             <p class="sessao-historico">Histórico</p>
             <div class="historico-conteudo">
-                <p class="titlo-historico" v-for="documento in historico">{{ documento.nome }}</p>
+                <router-link to="/dashboard" class="titlo-historico" :class="{'ativo': documento.id === DocumentoSelecionado}" v-for="documento in historico" @click="setarProjeto(documento.id)">{{ documento.titulo }}</router-link>
             </div>
         </div>
 
         <div class="nav-usuario">
             <nav class="nav">
-                <router-link to="/configuracao" class="sessao-icon">
+                <router-link to="/dashboard" class="sessao-icon"
+                @click="setarNovo"
+                :class="{ desativado: DocumentoSelecionado }"
+                >
+                    <img src="@/assets/mais.png" class="icon">
+                    <p class="sessao">Novo documento</p>  
+                </router-link>
+
+                <router-link to="/configuracao" class="sessao-icon"
+                @click="DocumentoSelecionado=null"
+                >
                     <img src="@/assets/configuracao.png" class="icon">
                     <p class="sessao">Configuração</p>
                 </router-link>
-                <router-link to="/perfil" class="sessao-icon">
+
+                <router-link to="/perfil" class="sessao-icon"
+                @click="DocumentoSelecionado=null"
+                >
                     <img src="@/assets/perfil.png" class="icon">
                     <p class="sessao">Sua conta</p>
                 </router-link>
             </nav>
-            <router-link to="/perfil" class="usuario">
+
+            <router-link to="/perfil" class="usuario"
+            @click="DocumentoSelecionado=null"
+            >
                 <div class="foto-usuario">
                     <img :src="fotoFalsa" class="foto-real" v-if="fotoFalsa">
                     <img src="@/assets/camera.png" class="sem-foto" v-else>
                 </div>
                 <div class="detalhes">
-                    <p class="nome-usuario">Pedro de Paula</p>
-                    <p class="cargo">Programador</p>
+                    <p class="nome-usuario">{{ usuario.nome }}</p>
+                    <p class="cargo">{{ usuario.cargo }}</p>
                 </div>
             </router-link>
         </div>
@@ -43,24 +59,52 @@ export default{
     data(){
         return{
             fotoFalsa,
-            historico: []
+            historico: [],
+            usuario:{
+                nome: '',
+                cargo: ''
+            },
+            DocumentoSelecionado: null
         }
     },
     methods:{
         async buscarHistorico(){
             try{
                 const { data } = await api.get(`/documentacao/historico`)
+                this.historico = data   
                 console.log(data)
-                this.historico = Object.entries(data).map(([id, nome]) => ({ id, nome }));
             }
             catch(err){
                 console.error(err)
             }
+        },
+
+        setarProjeto(projetoId){
+            this.DocumentoSelecionado = projetoId
+            this.$emit('projeto-selecionado', projetoId)
+        },
+
+        async buscarPerfil(){
+            try{
+                const { data } = await api.get(`/usuario/me`)
+                this.usuario.nome = data.nome
+                this.usuario.cargo = data.nome
+            }
+            catch(err){
+                console.log(err)
+            }
+        },
+
+        setarNovo(){
+            this.DocumentoSelecionado = null
+            this.$emit('novo-documento')
         }
+
     },
 
     mounted(){
         this.buscarHistorico()
+        this.buscarPerfil()
     }
 }
 </script>
@@ -69,6 +113,7 @@ export default{
 .corpo-historico{
     height: 100vh !important;
     width: 280px !important;
+    flex: none;
     border-right: solid 1px var(--cor-borda);
     display: flex;
     flex-direction: column;
@@ -105,13 +150,13 @@ export default{
 .historico-conteudo{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
     box-sizing: border-box;
     padding-top: 20px;
     height: auto;
     max-height: 380px;
     overflow-y: auto;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     overflow-x: hidden;
 }
 
@@ -119,7 +164,8 @@ export default{
     font-size: 13px;
     font-weight: 500;
     color: var(--cor-texto);
-    width: 100%;
+    height: 35px;
+    width: 90%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -127,10 +173,21 @@ export default{
     cursor: pointer;
     user-select: none;
     opacity: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+    text-decoration: none;
 }
 
 .titlo-historico:hover{
     transform: translateX(5px);
+}
+
+.ativo{
+    background-color: var(--cor-tema);
+    border-radius: 100px;
+    color: var(--cor-fundo-2);
 }
 
 .nav-usuario{
@@ -173,6 +230,21 @@ export default{
 
 .sessao-icon.router-link-active{
     background-color: var(--cor-tema);
+}
+
+.sessao-icon.desativado.router-link-active{
+   background-color: var(--cor-fundo-2);
+
+}
+
+.sessao-icon.desativado.router-link-active .sessao{
+   color: var(--cor-tema);
+
+}
+
+.sessao-icon.desativado.router-link-active .icon{
+   filter: brightness(1) invert(0);
+
 }
 
 .sessao-icon.router-link-active .sessao{

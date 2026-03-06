@@ -3,7 +3,7 @@
         <h3 class="titulo">Readme</h3>
         <div class="fundo-textarea">
             <textarea class="texto-resposta"
-            v-model="readme"
+            v-model="readmeReal"
             @input="autoResize"
             ref="textarea"
             >
@@ -25,28 +25,22 @@ export default{
     },
     data(){
         return{
-            readme:
-`# Sistema de Cadastro
+            readmeReal: ``
+        }
+    },
 
-Este projeto é um sistema desenvolvido em Python utilizando FastAPI.
+    props:{
+        readme: String
+    },
 
-## Funcionalidades
-
-- Cadastro de usuários
-- Login com autenticação JWT
-- Listagem de registros
-
-## Estrutura do Projeto
-
-- main.py: Arquivo principal da aplicação
-- auth_service.py: Lógica de autenticação
-- models.py: Modelos de dados
-
-## Como executar
-
-1. Instale as dependências
-2. Execute o servidor
-3. Acesse localhost:8000`
+    watch:{
+        readme:{
+            immediate: true,
+            handler(readme){
+                if (readme){
+                    this.readmeReal = readme
+                }
+            }
         }
     },
 
@@ -60,7 +54,7 @@ Este projeto é um sistema desenvolvido em Python utilizando FastAPI.
 
     computed:{
         readmeFormatado(){
-            return marked(this.readme)
+            return marked(this.readmeReal)
         }
     },
 

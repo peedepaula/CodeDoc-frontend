@@ -3,14 +3,14 @@
         <h3 class="titulo">Glossário</h3>
         <div class="fundo-textarea">
             <textarea class="texto-resposta"
-            v-model="glossario"
+            v-model="glossarioReal"
             @input="autoResize"
             ref="textarea"
             ></textarea>
         </div>
 
         <Copiar
-        :textoParaCopiar="glossario"
+        :textoParaCopiar="glossarioReal"
         />
     </section>
 </template>
@@ -25,45 +25,22 @@ export default{
     },
     data(){
         return{
-            glossario:
-`# 📖 Glossário
+            glossarioReal: ``
+        }
+    },
 
-## API (Application Programming Interface)
-Interface que permite a comunicação entre diferentes sistemas ou aplicações.
+    props:{
+        glossario: String
+    },
 
-## FastAPI
-Framework moderno em Python utilizado para construção de APIs rápidas e eficientes.
-
-## JWT (JSON Web Token)
-Token de autenticação utilizado para validar a identidade de um usuário em requisições.
-
-## Endpoint
-URL específica da API responsável por executar uma determinada ação.
-
-## Rota
-Definição de um caminho da API que responde a uma requisição HTTP.
-
-## Método HTTP
-Tipo de operação realizada em uma requisição.  
-Exemplos: GET, POST, PUT, DELETE.
-
-## Banco de Dados
-Sistema responsável por armazenar e organizar informações de forma persistente.
-
-## Modelo de Dados
-Estrutura que representa uma entidade do sistema, como um usuário.
-
-## Serviço
-Camada responsável por conter regras de negócio da aplicação.
-
-## Autenticação
-Processo de verificação da identidade de um usuário.
-
-## Autorização
-Processo que define quais ações um usuário autenticado pode executar.
-
-## Hash
-Transformação criptográfica utilizada para proteger senhas.`
+    watch:{
+        glossario:{
+            immediate: true,
+            handler(glossario){
+                if (glossario){
+                    this.glossarioReal = glossario
+                }
+            }
         }
     },
 
@@ -77,7 +54,7 @@ Transformação criptográfica utilizada para proteger senhas.`
     
     computed:{
         glossarioFormatado(){
-            return marked(this.glossario)
+            return marked(this.glossarioReal)
         }
     },
 
