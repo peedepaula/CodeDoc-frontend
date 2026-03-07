@@ -9,6 +9,8 @@
 </template>
 <script>
 import NavLandingPage from '@/components/NavLandingPage.vue';
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
     name: 'EmailTrocado',
@@ -19,6 +21,32 @@ export default{
         return{
             emailTrocado: true
         }
+    },
+
+    methods:{
+        async confirmarTroca(){
+            const token = this.$route.params.token
+            try{
+                await api.patch(`/usuario/trocar-email?token=${token}`)
+
+                mostrarPopUp(
+                    "concluido",
+                    "E-mail trocado.",
+                    "E-mail trocado com sucesso."
+                )
+            }
+            catch(err){
+                console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar trocar e e-mail."
+                )
+            }
+        }
+    },
+    mounted(){
+        this.confirmarTroca()
     }
 }
 </script>

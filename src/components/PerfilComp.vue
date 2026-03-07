@@ -42,6 +42,7 @@
 <script>
 import fotoPerfil from '@/assets/foto-falsa.jpg'
 import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
     name: 'PerfilComp',
@@ -72,7 +73,11 @@ export default{
                     });
                     // Atualiza a foto real com a URL que o back retornou
                     this.foto_usuario = response.data.url;
-                    alert("Foto atualizada!");
+                    mostrarPopUp(
+                        "concluido",
+                        "Foto atualizada.",
+                        "Foto atualizada com sucesso."
+                    )
                 } catch (err) {
                     console.error("Erro ao subir foto", err);
                 }
@@ -83,7 +88,7 @@ export default{
             try{
                 const { data } = await api.get(`/usuario/me`)
                 this.usuario.nome = data.nome
-                this.usuario.cargo = data.nome
+                this.usuario.cargo = data.cargo
                 this.usuario.foto = data.foto
             }
             catch(err){
@@ -94,9 +99,19 @@ export default{
         async atualizarPerfil(){
             try{
                 await api.patch(`/usuario/atualizar-nome-cargo`, {'nome_usuario': this.usuario.nome, 'cargo_usuario': this.usuario.cargo,})
+                mostrarPopUp(
+                    "concluido",
+                    "Perfil salvo.",
+                    "Perfil salvo com sucesso."
+                )
             }
             catch(err){
                 console.log(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao salvar o perfil."
+                )
             }
         }
     },

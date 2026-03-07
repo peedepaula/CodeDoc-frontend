@@ -4,23 +4,54 @@
         <div class="area-dados">
             <div class="input-p">
                 <p class="p-input">E-mail:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com">
+                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="usuario.email">
             </div>
             <p class="detalhe">Será mandado um link em seu E-mail, ao clicar nele você será redirecionado para a tela pra realizar a troca de senha.</p>
-            <button class="mandar">Mandar</button>
+            <button class="mandar" @click="mandarEmailTrocarSenha">Mandar</button>
         </div>
     </section>
 </template>
 <script>
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
+
 export default{
     name: 'ResetDeSenhaComp',
     data(){
         return{
+            usuario:{
+                email: ''
+            }
         }
     },
 
     methods:{
-
+        async mandarEmailTrocarSenha(){
+            if(this.usuario.email === ''){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Digite o e-mail."
+                )
+                return
+            }
+            try{
+                const { data } = await api.post(`/usuario/mandar-email-trocar-senha-nao-logado?email=${this.usuario.email}`)
+                mostrarPopUp(
+                    "concluido",
+                    "E-mail enviado",
+                    "O e-mail com o link para realizar a troca de senha, foi enviado."
+                )
+            }
+            catch(err){
+                console.log(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao enviar o e-mail."
+                )
+            }
+        }
     }
 }
 </script>

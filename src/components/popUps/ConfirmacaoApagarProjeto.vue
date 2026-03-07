@@ -28,12 +28,17 @@ export default{
                 this.$emit('fechar-apagar-projeto')
                 mostrarPopUp(
                     "concluido",
-                    "Projeto apagado",
+                    "Projeto apagado.",
                     "Projeto apagado com sucesso."
                 )
             }
             catch(err){
                 console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar apagar o projeto."
+                )
             }
         }
     }

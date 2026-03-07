@@ -17,7 +17,7 @@
                     <img :src="olhoFechado" v-else @click="mostraEsconderSenha" class="olho">
                 </div>
             </div>
-            <button class="salvar" @click="$emit('trocada')">Salvar</button>
+            <button class="salvar" @click="trocarSenha">Salvar</button>
         </div>
     </section>
 </template>
@@ -25,6 +25,8 @@
 <script>
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
     name: 'NovaSenha',
@@ -34,13 +36,63 @@ export default{
             olhoFechado,
             novaSenha: '',
             novaSenhaNovamente: '',
-            mostrarSenha: false
+            mostrarSenha: false,
         }
     },
 
     methods:{
         mostraEsconderSenha(){
             this.mostrarSenha = !this.mostrarSenha
+        },
+
+        async trocarSenha(){
+            const token = this.$route.params.token
+
+            if(this.novaSenha === '' || this.novaSenhaNovamente === ''){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Digite seu nova senha."
+                )
+                return
+            }
+
+            if(this.novaSenha !== this.novaSenhaNovamente){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "As senhas estão diferentes."
+                )
+                return
+            }
+
+            if(this.senhaFraca){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "A senha não atende aos requisitos."
+                )
+                return
+            }
+
+            try{
+                const resposta = await api.patch(`/usuario/trocar-senha-nao-logado?token=${token}&nova_senha=${this.novaSenha}`)
+                this.$emit('trocada')
+                mostrarPopUp(
+                    "concluido",
+                    "Senha trocada.",
+                    "Senha trocada com sucesso."
+                )
+            }
+
+            catch(err){
+                console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar trocar senha."
+                )
+            }
         }
     },
 

@@ -37,6 +37,7 @@
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
 import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
     name: 'RegistrarComp',
@@ -62,32 +63,44 @@ export default{
         async registrarUsuario(){
 
             if(this.senhaFraca){
-                alert("A senha não atende aos requisitos.")
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "A senha não atende aos requisitos."
+                )
                 return
             }
 
             if(this.criarConta.senha !== this.senhaNovamente){
-                alert("As senhas não coincidem.")
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "As senhas não coincidem."
+                )
                 return
             }
 
             try{
                 await api.post("/usuario/registrar", {
-
-                    nome_usuario: this.criarConta.nome,
-                    email_usuario: this.criarConta.email,
-                    senha_usuario: this.criarConta.senha
-
+                    nome_usuario: this.criarConta.nome.trim(),
+                    email_usuario: this.criarConta.email.trim(),
+                    senha_usuario: this.criarConta.senha.trim()
                 })
 
-                alert("Conta criada com sucesso!")
-
+                mostrarPopUp(
+                    "concluido",
+                    "Conta criada.",
+                    "Conta criada com sucesso."
+                )
                 this.$router.push("/login")
 
             }
             catch(error){
-
-                alert("Erro ao registrar: " + (error.response?.data.detail || error.message))
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar criar a conta."
+                )
 
             }
 

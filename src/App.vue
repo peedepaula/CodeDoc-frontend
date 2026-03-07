@@ -59,6 +59,10 @@ export default{
     --cor-concluido: #008000;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 *{
     margin: 0;
     padding: 0;

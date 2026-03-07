@@ -5,25 +5,76 @@
         <div class="dados">
             <div class="input-p">
                 <p class="p-input">Novo E-mail:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com">
+                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="usuario.novoEmail">
             </div>
 
             <div class="input-p">
                 <p class="p-input">Novo E-mail novamente:</p>
-                <input type="text" class="input" placeholder="Ex: seu@email.com">
+                <input type="text" class="input" placeholder="Ex: seu@email.com" v-model="novoEmailNovamente">
             </div>
 
             <p class="detalhe">Nós iremos enviar um link em E-mail, ao clicar nele eu E-mail será atualizado automaticamente.</p>
         </div>
-        <button class="enviar">Enviar</button>
+        <button class="enviar" @click="mandarEmailTrocarEmail">Enviar</button>
 
     </section>
 
 </template>
 
 <script>
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
+
 export default{
-    name: 'TrocarEmail'
+    name: 'TrocarEmail',
+
+    data(){
+        return{
+            usuario:{
+                novoEmail: ''
+            },
+
+            novoEmailNovamente: ''
+        }
+    },
+
+    methods:{
+        async mandarEmailTrocarEmail(){
+            if(this.usuario.novoEmail === ''){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Digite o e-mail."
+                )
+                return
+            }
+
+            if(this.usuario.novoEmail !== this.novoEmailNovamente){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Os e-mails estão diferentes."
+                )
+                return
+            }
+            try{
+                await api.post(`/usuario/mandar-email-trocar-email?novo_email=${this.usuario.novoEmail}`)
+                mostrarPopUp(
+                    "concluido",
+                    "E-mail enviado",
+                    "O e-mail com o link para realizar a troca de e-mail, foi enviado."
+                )
+            }
+            catch(err){
+                console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao enviar o e-mail."
+                )
+            }
+        }
+    }
 }
 </script>
 <style scoped>

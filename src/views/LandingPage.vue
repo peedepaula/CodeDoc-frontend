@@ -13,19 +13,78 @@
                     Reduza a dívida técnica e mantenha seus projetos organizados sem esforço manual.
                 </p>
                     <div class="botoes-tela-1">
-                        <button class="saiba-mais">Saiba mais</button>
-                        <button class="comecar-agora">Começar agora</button>
+                        <a class="saiba-mais" href="#tela-1">Saiba mais</a>
+                        <router-link to="/registrar" class="comecar-agora">Começar agora</router-link>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tela" id="tela-1">
+                <div class="conteudo-tela-2-fundo">
+                    <h2 class="titulo-tela">Sobre nós</h2>
+                    <div class="conteudo-tela-2">
+                        <h3 class="texto-tela-2">O CodeDoc é uma ferramenta que utiliza Inteligência Artificial para gerar automaticamente documentação técnica a partir do código ou de repositórios do GitHub. Em poucos segundos, a plataforma cria README, wiki técnica, diagramas de fluxo e glossários estruturados, ajudando desenvolvedores a manter seus projetos organizados e reduzir a dívida técnica sem precisar escrever documentação manualmente.</h3>
+                        <div class="img-tela-2"></div>
                     </div>
                 </div>
             </section>
 
             <section class="tela">
-                <div class="conteudo-tela-2">
-                    <h2 class="titulo-tela">Sobre nós</h2>
+                <div class="conteudo-tela-3-fundo">
+                    <h2 class="titulo-tela">Serviços</h2>
+                    <div class="conteudo-tela-3">
+                        <div class="servico-esquerda">
+                            <div class="img-servico"></div>
+                            <div class="trextos-servico">
+                                <p class="nome-servico">Readme</p>
+                                <p class="detalhe-servico">O CodeDoc é uma ferramenta que gera automaticamente documentação técnica a partir do código-fonte ou de repositórios do GitHub utilizando Inteligência Artificial. Em poucos segundos, a plataforma analisa a estrutura do projeto e cria arquivos como README, wiki técnica, diagramas de fluxo e glossários organizados. O objetivo é facilitar o entendimento do código, melhorar a organização dos projetos e reduzir o tempo gasto escrevendo documentação manualmente.</p>
+                            </div>
+                        </div>
+
+                        <div class="servico-direita">
+                            <div class="trextos-servico">
+                                <p class="nome-servico">Wiki</p>
+                                <p class="detalhe-servico">A Wiki do CodeDoc reúne informações técnicas importantes do projeto geradas automaticamente a partir da análise do código. Ela organiza conceitos, módulos, funções e estruturas do sistema de forma clara, permitindo que desenvolvedores entendam rapidamente como o projeto funciona, quais são seus principais componentes e como eles se relacionam.</p>
+                            </div>
+                            <div class="img-servico"></div>
+                        </div>
+
+                        <div class="servico-esquerda">
+                            <div class="img-servico"></div>
+                            <div class="trextos-servico">
+                                <p class="nome-servico">Diagramas</p>
+                                <p class="detalhe-servico">O CodeDoc também gera automaticamente diagramas que representam o fluxo e a estrutura do projeto. Esses diagramas ajudam a visualizar como os diferentes componentes do sistema se conectam, facilitando o entendimento da arquitetura, da lógica de funcionamento e das interações entre módulos do código.</p>
+                            </div>
+                        </div>
+
+                        <div class="servico-direita">
+                            <div class="trextos-servico">
+                                <p class="nome-servico">Glossário</p>
+                                <p class="detalhe-servico">O Glossário reúne os principais termos, conceitos e componentes identificados no projeto durante a análise do código. Ele ajuda a padronizar a linguagem utilizada na documentação e facilita o entendimento técnico do sistema, principalmente para novos desenvolvedores ou colaboradores que estão conhecendo o projeto.</p>
+                            </div>
+                            <div class="img-servico"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </section>
         <footer class="footer">
+            <div class="textos-footer">
+                <div class="area-texto">
+                    <p class="titulo-area-texto">Contato</p>
+                    <div class="informacoes-footer">
+                        <p class="informacao-footer">E-mail: codedoc.suporte@gmail.com</p>
+                        <p class="informacao-footer">Telefone: +55 (11) 97777-0000</p>
+                    </div>
+                </div>
+
+                <div class="area-texto">
+                    <p class="titulo-area-texto">Localização</p>
+                    <div class="informacoes-footer">
+                        <p class="informacao-footer">Brasil, São Paulo - Sp</p>
+                    </div>
+                </div>
+            </div>
             <div class="direitos">
                 <p class="p-direitos">© 2026 CodeDoc. Todos os direitos reservados.</p>
             </div>
@@ -72,7 +131,8 @@ export default {
 }
 
 .tela{
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
     padding: 40px;
@@ -125,6 +185,10 @@ export default {
     transition: all ease 0.3s;
     width: fit-content;
     font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .saiba-mais:hover{
@@ -144,6 +208,10 @@ export default {
     transition: all ease 0.3s;
     width: fit-content;
     font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .comecar-agora:hover{
@@ -154,7 +222,7 @@ export default {
 
 /* Tela dois */
 
-.conteudo-tela-2{
+.conteudo-tela-2-fundo{
     width: 100%;
     height: 100%;
     display: flex;
@@ -174,13 +242,149 @@ export default {
     transform: translateX(-50%);
 }
 
+.conteudo-tela-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.texto-tela-2{
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--cor-fundo-2);
+    width: 50%;
+    line-height: 45px;
+}
+
+.img-tela-2{
+    background-color: var(--cor-fundo-2);
+    height: 100vh;
+    width: 40%;
+    border-radius: 30px;
+}
+/* Tela dois */
+
+/* Tela tres */
+
+.conteudo-tela-3-fundo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-sizing: border-box;
+    padding-top: 30px;
+    position: relative;
+}
+
+
+.conteudo-tela-3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.servico-esquerda{
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 15px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    align-self: flex-start;
+}
+
+.servico-direita{
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 15px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.img-servico{
+    width: 300px;
+    height: 300px;
+    background-color: var(--cor-fundo-2);
+    border-radius: 20px;
+}
+
+.trextos-servico{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.nome-servico{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cor-fundo-2);
+}
+
+.detalhe-servico{
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cor-fundo-2);  
+}
+
+/* Tela tres */
+
+
+/* Footer */
+
 .footer{
     width: 100%;
-    height: 500px;
+    height: 350px;
     background-color: var(--cor-fundo-2);
     display: flex;
     flex-direction: column;
     padding-bottom: 70px;
+    background-image: radial-gradient(#0c465f4e 1px, transparent 1px);
+    background-size: 30px 30px;
+    border-radius: 20px 20px 0 0;
+}
+
+.textos-footer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: 25%;
+    padding: 80px 35px 20px 35px;
+    box-sizing: border-box;
+}
+
+.area-texto{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.titulo-area-texto{
+    font-size: 16px;
+    color: var(--cor-tema);
+    font-weight: 500;
+}
+
+.informacoes-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.informacao-footer{
+    font-size: 13px;
+    color: var(--cor-tema);
+    font-weight: 300;
 }
 
 .direitos{
@@ -199,4 +403,6 @@ export default {
     font-weight: 300;
     color: var(--cor-tema);
 }
+
+/* Footer */
 </style>

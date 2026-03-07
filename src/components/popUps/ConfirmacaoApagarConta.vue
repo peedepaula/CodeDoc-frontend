@@ -6,12 +6,39 @@
             <h4 class="titulo-pop-up">Apagar conta?</h4>
             <p class="detalhe-pop-up">Você tem certeza que deseja apagar sua conta? Ao apagar você não terá como recuperar seus dados novamente.</p>
         </div>
-        <button class="botao-pop-up">Apagar</button>
+        <button class="botao-pop-up" @click="apagarConta">Apagar</button>
     </section>
 </template>
 <script>
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
+
 export default{
-    name: 'ConfirmacaoApagar'
+    name: 'ConfirmacaoApagar',
+
+    methods:{
+        async apagarConta(){
+            try{
+                await api.delete(`/usuario/apagar`)
+                mostrarPopUp(
+                    "concluido",
+                    "Conta apagada.",
+                    "Conta apagada com sucesso."
+                )
+
+                localStorage.removeItem('token_sufla');
+                this.$router.push('/login');
+            }
+            catch(err){
+                console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar apagar a conta."
+                )
+            }
+        }
+    }
 }
 </script>
 <style scoped>

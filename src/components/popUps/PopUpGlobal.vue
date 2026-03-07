@@ -40,6 +40,7 @@ export default {
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
     border: solid 1px var(--cor-borda);
     animation: surgirDaDireita 1s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1000;
 }
 
 .icon-erro-concluido{

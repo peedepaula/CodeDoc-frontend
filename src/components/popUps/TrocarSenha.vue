@@ -5,28 +5,95 @@
         <div class="dados">
             <div class="input-p">
                 <p class="p-input">Senha atual:</p>
-                <input type="text" class="input" placeholder="Seu senha atual...">
+                <input type="text" class="input" placeholder="Seu senha atual..." v-model="usuario.senhaAtual">
             </div>
 
             <div class="input-p">
                 <p class="p-input">Nova senha:</p>
-                <input type="text" class="input" placeholder="Nova senha...">
+                <input type="text" class="input" placeholder="Nova senha..." v-model="usuario.novaSenha">
+                <p class="senha-fraca" :class="senhaFraca ? 'senha-fraca' : 'senha-forte'" v-if="usuario.novaSenha">{{senhaFraca? 'Senha fraca' : 'Senha forte'}}</p>
+                <p class="detalhe">senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e um símbolo (#$!@&)</p>
             </div>
 
             <div class="input-p">
                 <p class="p-input">Nova senha novamente:</p>
-                <input type="text" class="input" placeholder="Nova senha novamente...">
+                <input type="text" class="input" placeholder="Nova senha novamente..." v-model="novaSenhaRepetida">
             </div>
 
         </div>
-        <button class="salvar">Salvar</button>
+        <button class="salvar" @click="trocarSenha">Salvar</button>
     </section>
 
 </template>
 
 <script>
+import api from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
+
 export default{
-    name: 'TrocarSenha'
+    name: 'TrocarSenha',
+    data(){
+        return{
+            usuario:{
+                senhaAtual: '',
+                novaSenha: ''
+            },
+            novaSenhaRepetida: ''
+        }
+    },
+
+    methods:{
+        async trocarSenha(){
+            if(this.senhaFraca){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "A senha não atende aos requisitos."
+                )
+                return
+            }
+
+            if(this.usuario.novaSenha !== this.novaSenhaRepetida){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "As senhas não coincidem."
+                )
+                return
+            }
+
+            try{
+                const { data } = await api.patch(`/usuario/trocar-senha-logado?senha_atual=${this.usuario.senhaAtual.trim()}&nova_senha=${this.usuario.novaSenha.trim()}`)
+                this.$emit('fechar-trocar-senha')
+                mostrarPopUp(
+                    "concluido",
+                    "Senha trocada.",
+                    "Senha trocada com sucesso."
+                )
+            }
+            catch(err){
+                console.error(err)
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar trocar senha."
+                )
+            }
+        }
+    },
+
+    computed: {
+        senhaFraca() {
+            const senha = this.usuario.novaSenha;
+            const regexForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$!@&])[A-Za-z\d#$!@&]{8,}$/;
+            
+            return !regexForte.test(senha);
+        },
+
+        classeFeedback() {
+            return this.senhaFraca ? 'texto-vermelho' : 'texto-verde';
+        }
+    },
 }
 </script>
 <style scoped>
@@ -112,6 +179,24 @@ export default{
 .salvar:hover{
     transform: translateY(-2px);
 }
+
+
+.detalhe{
+    font-size: 11px;
+    color: var(--cor-tema);
+    text-align: start;
+    text-decoration: none;
+}
+
+.senha-fraca{
+    font-size: 11px;
+    color: var(--cor-erro);
+}
+
+.senha-forte{
+    color: var(--cor-concluido);
+}
+
 
 @keyframes surgir {
     0%{

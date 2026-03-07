@@ -56,7 +56,7 @@ const router = createRouter({
       meta: {esconderHistorico: true}
     },
     {
-      path: '/email-trocado',
+      path: '/email-trocado/:token',
       name: "E-mail trocado",
       component: () => import('../views/EmailTrocado.vue'),
       meta: {esconderHistorico: true}

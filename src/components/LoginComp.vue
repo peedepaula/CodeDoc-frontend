@@ -25,6 +25,7 @@
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
 import api, { TOKEN_KEY } from '@/services/api';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
     name: 'LoginComp',
@@ -47,19 +48,25 @@ export default{
 
         async fazerLogin() {
             try {
-                // Faz a requisição diretamente aqui
                 const response = await api.post("/usuario/entrar", {
-                email_usuario: this.usuarioLogin.email,
-                senha_usuario: this.usuarioLogin.senha
+                email_usuario: this.usuarioLogin.email.trim(),
+                senha_usuario: this.usuarioLogin.senha.trim()
                 });
 
-                // Salva o token no localStorage
+                mostrarPopUp(
+                    "concluido",
+                    "Login realizado.",
+                    "Login realizado com sucesso."
+                )
                 localStorage.setItem(TOKEN_KEY, response.data.access_token);
 
-                // Redireciona para o dashboard
                 this.$router.push("/dashboard");
             } catch (error) {
-                alert("Erro no login: " + (error.response?.data.detail || error.message));
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar fazer login."
+                )
             }
         }
     }
