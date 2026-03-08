@@ -104,6 +104,7 @@ export default {
     transition: all ease 0.3s;
     align-self: flex-end;
     border: solid 1px var(--cor-tema);
+    flex-shrink: 0;
 }
 
 .enviar:hover{
@@ -125,6 +126,16 @@ export default {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .corpo-barra-mensagem{
+        width: 95%;
+    }
+
+    .mensagem{
+            width: 100%;
     }
 }
 

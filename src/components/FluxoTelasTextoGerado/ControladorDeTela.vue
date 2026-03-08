@@ -150,4 +150,10 @@ export default{
     height: auto;
     padding: 70px 0 80px 0;
 }
+
+@media (max-width: 600px) {
+    .conteudo-telas-texto-gerado{
+        padding: 80px 0 80px 0;
+    }
+}
 </style>

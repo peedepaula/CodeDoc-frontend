@@ -1,5 +1,6 @@
 import Home from '@/views/Home.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import { TOKEN_KEY } from "@/services/api"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,17 +8,20 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: "Dashboard",
-      component: () => import('../views/Home.vue')
+      component: () => import('../views/Home.vue'),
+      meta: { requiresAuth: true }
     },
       {
       path: '/configuracao',
       name: "Configuracao",
-      component: () => import('../views/Configuracao.vue')
+      component: () => import('../views/Configuracao.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/perfil',
       name: "Perfil",
-      component: () => import('../views/Perfil.vue')
+      component: () => import('../views/Perfil.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',
@@ -76,5 +80,16 @@ const router = createRouter({
   ],
 })
 
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem(TOKEN_KEY)
+  // rota precisa de login
+  if (to.meta.requiresAuth && !token) {
+    next("/login")
+  } 
+  else {
+    next()
+  }
+
+})
 
 export default router

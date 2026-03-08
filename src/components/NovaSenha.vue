@@ -238,4 +238,11 @@ export default{
         opacity: 1;
     }
 }
+
+@media (max-width: 600px) {
+    .corpo-registrar{
+        width: 100%;
+    }
+}
+
 </style>

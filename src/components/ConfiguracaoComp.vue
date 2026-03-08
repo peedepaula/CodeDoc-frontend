@@ -169,4 +169,11 @@ hr{
         opacity: 1;
     }
 }
+
+@media (max-width: 600px) {
+    .corpo-configuracao{
+        margin-top: 50px;
+    }
+}
+
 </style>

@@ -4,11 +4,13 @@
         v-if="!$route.meta.esconderHistorico"
         @projeto-selecionado="setarProjeto"
         @novo-documento="projetoSetado = null"
+        @fechar-historico="fecharHistorico"
+        :mostrarMobile="mostrarHistoricoMobile"
         />
         <div class="corpo-principal-real">
             <RouterView
             :projetoSetado="projetoSetado"
-
+            @abrir-historico="abrirHistorico"
             />
         
             <!-- PopUps -->
@@ -33,13 +35,22 @@ export default{
     },
     data(){
         return{
-            projetoSetado: null
+            projetoSetado: null,
+            mostrarHistoricoMobile: false
         }
     },
 
     methods:{
         setarProjeto(projetoId){
             this.projetoSetado = projetoId
+        },
+
+        abrirHistorico(){
+            this.mostrarHistoricoMobile = true
+        },
+
+        fecharHistorico(){
+            this.mostrarHistoricoMobile = false
         }
     }
 }

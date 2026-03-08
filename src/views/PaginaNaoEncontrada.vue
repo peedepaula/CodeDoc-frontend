@@ -39,4 +39,11 @@ export default{
     top: 0;
 }
 
+@media (max-width: 600px) {
+    .corpo{
+        box-sizing: border-box;
+        padding: 0 10px 0 10px;
+    }
+}
+
 </style>

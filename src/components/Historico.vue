@@ -1,6 +1,6 @@
 <template>
-    <section class="corpo-historico">
-        <router-link to="/dashboard" class="logo">CodeDoc</router-link>
+    <section class="corpo-historico" :class="{'aberto': mostrarMobile || fecharMobile}">
+        <router-link to="/dashboard" @click="fecharHistoricoSetarDocumentoNull" class="logo">CodeDoc</router-link>
         <div class="historico">
             <p class="sessao-historico">Histórico</p>
             <div class="historico-conteudo">
@@ -19,14 +19,14 @@
                 </router-link>
 
                 <router-link to="/configuracao" class="sessao-icon"
-                @click="DocumentoSelecionado=null"
+                @click="fecharHistoricoSetarDocumentoNull"
                 >
                     <img src="@/assets/configuracao.png" class="icon">
                     <p class="sessao">Configuração</p>
                 </router-link>
 
                 <router-link to="/perfil" class="sessao-icon"
-                @click="DocumentoSelecionado=null"
+                @click="fecharHistoricoSetarDocumentoNull"
                 >
                     <img src="@/assets/perfil.png" class="icon">
                     <p class="sessao">Sua conta</p>
@@ -34,7 +34,7 @@
             </nav>
 
             <router-link to="/perfil" class="usuario"
-            @click="DocumentoSelecionado=null"
+            @click="fecharHistoricoSetarDocumentoNull"
             >
                 <div class="foto-usuario">
                     <img :src="usuario.foto" class="foto-real" v-if="usuario.foto">
@@ -68,6 +68,11 @@ export default{
             DocumentoSelecionado: null
         }
     },
+
+    props:{
+        mostrarMobile: Boolean
+    },
+
     methods:{
         async buscarHistorico(){
             try{
@@ -83,6 +88,7 @@ export default{
         setarProjeto(projetoId){
             this.DocumentoSelecionado = projetoId
             this.$emit('projeto-selecionado', projetoId)
+            this.$emit('fechar-historico')
         },
 
         async buscarPerfil(){
@@ -100,6 +106,13 @@ export default{
         setarNovo(){
             this.DocumentoSelecionado = null
             this.$emit('novo-documento')
+            this.$emit('fechar-historico')
+        
+        },
+
+        fecharHistoricoSetarDocumentoNull(){
+            this.DocumentoSelecionado=null
+            this.$emit('fechar-historico')
         }
 
     },
@@ -318,6 +331,45 @@ export default{
     font-size: 10px;
     opacity: 0.7;
     color: var(--cor-texto);
+}
+
+@keyframes surgirDaDireita {
+    0%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .corpo-historico{
+        display: none;
+        border-radius: 20px 0 20px 20px;
+        border-left: solid 1px var(--cor-borda);
+        border-bottom: solid 1px var(--cor-borda);
+        height: 90vh !important;
+        width: 260px !important;
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
+    }
+
+    .corpo-historico.aberto{
+        transform: translateX(0);
+        display: flex;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 999;
+        animation: surgirDaDireita 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .corpo-historico.fecharMobile{
+        display: none;
+    }
+    
 }
 
 </style>

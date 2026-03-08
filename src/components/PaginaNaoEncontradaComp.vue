@@ -97,4 +97,23 @@ export default{
     width: auto;
     height: 250px;
 }
+
+@media (max-width: 600px) {
+    .corpo-pagina-nao-encontrada{
+        width: 100%;
+        height: 450px;
+        flex-direction: column;
+        padding: 40px 20px 30px 20px;
+    }
+
+    .botoes{
+        margin-top: 10px;
+    }
+
+    .pessoa-erro{
+        align-self: flex-end;
+        height: 100px;
+    }
+}
+
 </style>

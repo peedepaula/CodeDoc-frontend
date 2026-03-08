@@ -2,6 +2,7 @@
     <main class="corpo">
         <section class="conteudo">
             <section class="conteudo-real">
+                <img src="@/assets/menu.png" class="menu" @click="$emit('abrir-historico')">
                 <ConfiguracaoComp
                 @mostrar-trocar-email="mostrarTrocarEmail=true"
                 @mostrar-trocar-senha="mostrarTrocarSenha=true"
@@ -110,5 +111,29 @@ export default {
     align-items: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px); 
+}
+
+.menu{
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .conteudo-real{
+        padding: 10px;
+    }
+
+    .menu{
+        display: flex;
+        width: 20px;
+        height: 20px;
+        position: fixed;
+        right: 15px;
+        padding: 10px;
+        border-radius: 100px;
+        border: solid 1px var(--cor-borda);
+        background-color: var(--cor-fundo-2);
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
+        z-index: 100;
+    }
 }
 </style>

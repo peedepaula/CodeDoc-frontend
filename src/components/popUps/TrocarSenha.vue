@@ -207,4 +207,11 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-trocar-senha{
+        width: 95%;
+    }
+}
+
+
 </style>

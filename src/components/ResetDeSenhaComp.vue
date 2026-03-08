@@ -147,4 +147,10 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-reset{
+        width: 100%;
+    }
+}
+
 </style>

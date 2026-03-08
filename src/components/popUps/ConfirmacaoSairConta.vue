@@ -108,4 +108,10 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-pop-up{
+        width: 95%;
+    }
+}
+
 </style>

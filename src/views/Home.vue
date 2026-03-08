@@ -5,7 +5,10 @@
                 <AreaTela
                 v-if="Object.keys(documento).length > 0"
                 @setou-tela="setarTela"
+                @abrir-historico="$emit('abrir-historico')"
                 />
+                <img v-else src="@/assets/menu.png" class="menu" @click="$emit('abrir-historico')">
+
                 <ControladorDeTela
                 :telaAtual="telaAtual"
                 :documento="documento"
@@ -112,6 +115,7 @@ export default{
     flex-direction: column;
     justify-content: center;
     background-color: var(--cor-fundo);
+    position: relative;
 }
 
 .conteudo{
@@ -177,6 +181,10 @@ export default{
     -webkit-backdrop-filter: blur(8px); 
 }
 
+.menu{
+    display: none;
+}
+
 @keyframes surgirDaDireita {
     0% {
         opacity: 0;
@@ -186,6 +194,26 @@ export default{
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .conteudo-real{
+        padding: 10px;
+    }
+
+    .menu{
+        display: flex;
+        width: 20px;
+        height: 20px;
+        position: fixed;
+        right: 15px;
+        padding: 10px;
+        border-radius: 100px;
+        border: solid 1px var(--cor-borda);
+        background-color: var(--cor-fundo-2);
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
+        z-index: 100;
     }
 }
 

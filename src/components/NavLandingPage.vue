@@ -4,7 +4,7 @@
         <img src="@/assets/menu.png" class="menu" style="display: none;">
         <div class="botoes">
             <router-link to="/login" class="link-nav">Entrar</router-link>
-            <router-link to="/registrar" class="link-nav">Registrar</router-link>
+            <router-link to="/registrar" class="link-nav" id="esconder">Registrar</router-link>
         </div>
         <!-- <nav class="nav-visivel">
             <router-link to="" class="link">Entrar</router-link>
@@ -78,6 +78,12 @@ export default{
     width: 15px;
     cursor: pointer;
     user-select: none;
+}
+
+@media (max-width: 600px) {
+    #esconder{
+        display: none;
+    }
 }
 
 </style>

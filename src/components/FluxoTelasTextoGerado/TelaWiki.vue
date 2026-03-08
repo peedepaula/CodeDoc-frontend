@@ -135,4 +135,11 @@ textarea:focus {
     }
 }
 
+@media (max-width: 600px) {
+    .texto-resposta{
+        padding: 10px 15px 60px 15px;
+        font-size: 12px;
+    }
+}
+
 </style>

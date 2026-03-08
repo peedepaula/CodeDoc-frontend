@@ -181,4 +181,10 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-trocar-email{
+        width: 95%;
+    }
+}
+
 </style>

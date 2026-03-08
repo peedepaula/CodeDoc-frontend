@@ -295,4 +295,11 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-perfil{
+        height: 560px;
+        margin-top: 50px;
+    }
+}
+
 </style>

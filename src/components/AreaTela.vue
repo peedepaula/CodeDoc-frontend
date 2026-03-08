@@ -1,10 +1,13 @@
 <template>
     <div class="area">
-        <p class="area-link" @click="setouTela('seu-projeto')" :class="{'ativo': tela === 'seu-projeto'}">Seu projeto</p>
-        <p class="area-link" @click="setouTela('readme')" :class="{'ativo': tela === 'readme'}">Readme</p>
-        <p class="area-link" @click="setouTela('wiki')" :class="{'ativo': tela === 'wiki'}">Wiki</p>
-        <p class="area-link" @click="setouTela('diagramas')" :class="{'ativo': tela === 'diagramas'}">diagramas de fluxo</p>
-        <p class="area-link" @click="setouTela('glossario')" :class="{'ativo': tela === 'glossario'}">Glossário</p>
+        <div class="area-links">
+            <p class="area-link" @click="setouTela('seu-projeto')" :class="{'ativo': tela === 'seu-projeto'}">Seu projeto</p>
+            <p class="area-link" @click="setouTela('readme')" :class="{'ativo': tela === 'readme'}">Readme</p>
+            <p class="area-link" @click="setouTela('wiki')" :class="{'ativo': tela === 'wiki'}">Wiki</p>
+            <p class="area-link" @click="setouTela('diagramas')" :class="{'ativo': tela === 'diagramas'}">diagramas de fluxo</p>
+            <p class="area-link" @click="setouTela('glossario')" :class="{'ativo': tela === 'glossario'}">Glossário</p>
+        </div>
+        <img src="@/assets/menu.png" class="menu" @click="$emit('abrir-historico')">
     </div>
 </template>
 
@@ -45,6 +48,23 @@ export default{
     animation: surgirDeCima 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.area-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.area-links::-webkit-scrollbar {
+  display: none;
+}
+
+.area-links {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
 .area-link{
     height: 30px;
     font-size: 14px;
@@ -57,7 +77,7 @@ export default{
     cursor: pointer;
     user-select: none;
     transition: all ease 0.3s;
-
+    white-space: nowrap;
 }
 
 .area-link:hover{
@@ -73,6 +93,10 @@ export default{
     border-radius: 100px;
 }
 
+.menu{
+    display: none;
+}
+
 @keyframes surgirDeCima {
     0% {
         opacity: 0;
@@ -84,4 +108,36 @@ export default{
         transform: translateY(0);
     }
 }
+
+@media (max-width: 600px) {
+    .area{
+        gap: 50px;
+        height: 45px;
+        padding: 0 10px 0 10px;
+        width: 100%;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        top: 20px;
+        max-width: 95%;
+    }
+
+    .area-links{
+        overflow-x: auto;
+        justify-content: flex-start;
+        max-width: calc(100% - 35px);
+    }
+
+    .area-link{
+        font-size: 12px;
+    }
+
+    .menu{
+        display: flex;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 15px;
+    }
+}
+
 </style>

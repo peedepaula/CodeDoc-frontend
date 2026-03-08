@@ -94,4 +94,23 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-diagrama{
+        padding: 20px;
+        padding-bottom: 5px;
+    }
+
+    .titulo{
+        font-size: 25px;
+    }
+
+    .descricao{
+        font-size: 13px;
+    }
+
+    .detalhe{
+        font-size: 10px;
+    }
+}
+
 </style>

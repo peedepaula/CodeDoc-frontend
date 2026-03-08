@@ -253,4 +253,10 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-registrar{
+        width: 100%;
+    }
+}
+
 </style>

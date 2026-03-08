@@ -74,4 +74,10 @@ export default{
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-politica{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+}
 </style>

@@ -267,4 +267,32 @@ textarea:focus {
     }
 }
 
+@media (max-width: 600px) {
+    .corpo-projeto{
+        padding: 10px 20px 10px 20px;
+    }
+
+    .bola{
+        width: 5px;
+        height: 5px;
+    }
+
+    .nome-projeto{
+        font-size: 25px;
+    }
+
+    .descricao-projeto{
+        font-size: 13px;
+        max-width: 100%;
+    }
+
+    .data{
+        left: 20px;
+    }
+
+    .botoes{
+        right: 20px;
+    }
+}
+
 </style>
