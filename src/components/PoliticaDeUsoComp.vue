@@ -3,9 +3,59 @@
         <h3 class="titulo">Política de uso</h3>
 
         <div class="politicas">
-            <div class="politica" v-for="n in 10">
-                <h4 class="titulo-politica">Politica de faca</h4>
-                <p class="descricao-politica">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt repellendus, Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam atque illum quam!</p>
+            <div class="politica">
+                <h4 class="titulo-politica">1. Uso da plataforma</h4>
+                <p class="descricao-politica">
+                    A plataforma deve ser utilizada exclusivamente para análise de repositórios de código,
+                    geração de documentação técnica, criação de diagramas de fluxo e construção de glossários
+                    de funções. O usuário concorda em utilizar os serviços de forma responsável e de acordo
+                    com as leis aplicáveis.
+                </p>
+            </div>
+
+            <div class="politica">
+                <h4 class="titulo-politica">2. Responsabilidade sobre os repositórios</h4>
+                <p class="descricao-politica">
+                    O usuário é responsável por garantir que possui permissão para conectar e analisar
+                    os repositórios utilizados na plataforma. A utilização de repositórios sem autorização
+                    adequada é de inteira responsabilidade do usuário.
+                </p>
+            </div>
+
+            <div class="politica">
+                <h4 class="titulo-politica">3. Uso adequado da Inteligência Artificial</h4>
+                <p class="descricao-politica">
+                    Os recursos de inteligência artificial são destinados à geração de documentação,
+                    diagramas e explicações sobre o código. O usuário não deve utilizar a plataforma
+                    para gerar conteúdo ilegal, ofensivo ou que viole direitos de terceiros.
+                </p>
+            </div>
+
+            <div class="politica">
+                <h4 class="titulo-politica">4. Limitações do serviço</h4>
+                <p class="descricao-politica">
+                    A plataforma busca fornecer análises e documentações precisas, porém os resultados
+                    gerados automaticamente podem conter imprecisões. O usuário é responsável por revisar
+                    e validar as informações antes de utilizá-las em ambientes de produção.
+                </p>
+            </div>
+
+            <div class="politica">
+                <h4 class="titulo-politica">5. Uso indevido</h4>
+                <p class="descricao-politica">
+                    Não é permitido utilizar a plataforma para atividades que possam comprometer sua
+                    segurança, funcionamento ou disponibilidade, incluindo tentativas de exploração
+                    de vulnerabilidades, acesso não autorizado ou uso abusivo da infraestrutura.
+                </p>
+            </div>
+
+            <div class="politica">
+                <h4 class="titulo-politica">6. Suspensão de acesso</h4>
+                <p class="descricao-politica">
+                    A plataforma se reserva o direito de suspender ou limitar o acesso de usuários
+                    que violem estas políticas ou utilizem o serviço de forma prejudicial à plataforma
+                    ou a outros usuários.
+                </p>
             </div>
         </div>
     </section>

@@ -345,6 +345,32 @@ export default{
     }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .corpo-historico{
+        display: none;
+        border-radius: 20px 0 20px 20px;
+        border-left: solid 1px var(--cor-borda);
+        border-bottom: solid 1px var(--cor-borda);
+        height: 90vh !important;
+        width: 260px !important;
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
+    }
+
+    .corpo-historico.aberto{
+        transform: translateX(0);
+        display: flex;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 999;
+        animation: surgirDaDireita 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .corpo-historico.fecharMobile{
+        display: none;
+    }
+}
+
 @media (max-width: 600px) {
     .corpo-historico{
         display: none;

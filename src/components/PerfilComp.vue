@@ -295,6 +295,13 @@ export default{
     }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .corpo-perfil{
+        height: 560px;
+        margin-top: 50px;
+    }
+}
+
 @media (max-width: 600px) {
     .corpo-perfil{
         height: 560px;

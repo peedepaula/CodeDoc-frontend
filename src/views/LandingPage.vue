@@ -418,6 +418,101 @@ export default {
 /* Footer */
 
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .conteudo{
+        gap: 40px;
+    }
+
+    .tela{
+        padding: 20px;
+        height: auto;
+        min-height: auto;
+    }
+
+    /* Tela 1 */
+
+    .texto-principal{
+        font-size: 30px;
+        max-width: 100%;
+    }
+    .descricao{
+        max-width: 100%;
+    }
+    /* Tela 1 */
+
+    /* Tela 2 */
+
+    .conteudo-tela-2{
+        flex-direction: column-reverse;
+        gap: 50px;
+    }
+
+    .titulo-tela{
+        font-size: 20px;
+    }
+
+    .texto-tela-2{
+        font-size: 20px;
+        line-height: 30px;
+        width: 100%;
+    }
+
+    .img-tela-2{
+        width: 100%;
+        height: 400px;
+    }
+
+    /* Tela 3 */
+
+    .conteudo-tela-3{
+        gap: 100px;
+        padding-bottom: 60px;
+    }
+
+    .servico-esquerda{
+        flex-direction: column;
+        align-self: center;
+        width: 100%;
+    }
+
+    .servico-direita{
+        flex-direction: column-reverse;
+        align-self: center;
+        width: 100%;
+    }
+
+    .img-servico{
+        max-width: 100%;
+        width: 100%; 
+        aspect-ratio: 1 / 1;
+    }
+
+    .textos-servico{
+        width: 100%;
+        align-items: center;
+    }
+
+    .detalhe-servico{
+        text-align: center;
+    }
+
+    /* Tela 3 */
+
+    /* Footer */
+
+    .footer{
+        height: 450px;
+    }
+
+    .textos-footer{
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    /* Footer */
+
+}
+
 @media (max-width: 600px) {
     .conteudo{
         max-width: 600px;

@@ -53,6 +53,26 @@ export default {
     display: none;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .conteudo-real{
+        padding: 10px;
+    }
+
+    .menu{
+        display: flex;
+        width: 20px;
+        height: 20px;
+        position: fixed;
+        right: 15px;
+        padding: 10px;
+        border-radius: 100px;
+        border: solid 1px var(--cor-borda);
+        background-color: var(--cor-fundo-2);
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.046);
+        z-index: 100;
+    }
+}
+
 @media (max-width: 600px) {
     .conteudo-real{
         padding: 10px;

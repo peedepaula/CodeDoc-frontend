@@ -7,6 +7,7 @@
             <p class="area-link" @click="setouTela('diagramas')" :class="{'ativo': tela === 'diagramas'}">diagramas de fluxo</p>
             <p class="area-link" @click="setouTela('glossario')" :class="{'ativo': tela === 'glossario'}">Glossário</p>
         </div>
+        <img src="@/assets/menu.png" class="menu-tablet" @click="$emit('abrir-historico')">
         <img src="@/assets/menu.png" class="menu" @click="$emit('abrir-historico')">
     </div>
 </template>
@@ -97,6 +98,10 @@ export default{
     display: none;
 }
 
+.menu-tablet{
+    display: none;
+}
+
 @keyframes surgirDeCima {
     0% {
         opacity: 0;
@@ -107,6 +112,15 @@ export default{
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .menu-tablet{
+        display: flex;
+        width: 20px;
+        height: 20px;
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -138,6 +152,11 @@ export default{
         position: absolute;
         right: 15px;
     }
+
+    .menu-tablet{
+        display: none;
+    }
+
 }
 
 </style>
