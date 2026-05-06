@@ -19,6 +19,16 @@
             @input="autoResize($event.target)"
             ></textarea>
 
+            <div class="bototes-extras">
+                <div class="p-input">
+                    <p class="input-p">Link do seu repositório</p>
+                    <input type="text" class="url-github" v-model="linkProjeto">
+                </div>
+                <div class="p-input" v-if="titulo !== 'Processando...'">
+                    <p class="input-p">Atualizar a documentação</p>
+                    <button class="atulizar-documentacao" @click="$emit('atualizar')">Atualizar</button>
+                </div>
+            </div>
         </div>
         <p class="data">{{ formatarData(dataCriacao) }}</p>
         <div class="botoes">
@@ -36,11 +46,13 @@ export default{
             nomeProjeto: '',
             descricaoProjeto: ``,
             dataCriacao: '',
-            id: null
+            id: null,
+            linkProjeto: ''
         }
     },
 
     props:{
+        github_url: String,
         titulo: String,
         descricao: String,
         data: String,
@@ -53,6 +65,14 @@ export default{
             handler(titulo){
                 if (titulo){
                     this.nomeProjeto = titulo
+                }
+            }
+        },
+        github_url:{
+            immediate: true,
+            handler(link){
+                if (link){
+                    this.linkProjeto = link
                 }
             }
         },
@@ -81,11 +101,14 @@ export default{
             } 
         },
 
-        nomeProjeto(novoValor) {
+        nomeDoProjeto(novoValor) {
             this.$emit('update-dados', { titulo_projeto: novoValor });
         },
-        descricaoProjeto(novoValor) {
+        descricaoDoProjeto(novoValor) {
             this.$emit('update-dados', { descricao_projeto: novoValor });
+        },
+        linkProjeto(novoValor) {
+            this.$emit('update-dados', { github_url: novoValor });
         }
     },
 
@@ -188,6 +211,53 @@ export default{
     background: none;
 }
 
+.bototes-extras{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.url-github{
+    background: none;
+    border: solid 1px var(--cor-sub-texto);
+    border-radius: 10px;
+    height: 35px;
+    width: 300px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.p-input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-p{
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--cor-tema);
+    opacity: 0.6;
+}
+
+.atulizar-documentacao{
+    width: fit-content;
+    height: 35px;
+    padding: 0 32px;
+    border: none;
+    border-radius: 100px;
+    font-size: 13px;
+    background-color: var(--cor-tema);
+    color: var(--cor-fundo-2);
+    cursor: pointer;
+    transition: all ease 0.3s;
+}
+
+.atulizar-documentacao:hover{
+    transform: translateY(-2px);
+}
+
 textarea:focus {
     border: none;
     outline: none;
@@ -270,6 +340,10 @@ textarea:focus {
 @media (max-width: 600px) {
     .corpo-projeto{
         padding: 10px 20px 10px 20px;
+    }
+
+    .url-github{
+        width: 100%;
     }
 
     .bola{

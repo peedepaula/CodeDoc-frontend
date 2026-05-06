@@ -4,7 +4,9 @@
         <div class="historico">
             <p class="sessao-historico">Histórico</p>
             <div class="historico-conteudo">
-                <router-link to="/dashboard" class="titlo-historico" :class="{'ativo': documento.id === DocumentoSelecionado}" v-for="documento in historico" @click="setarProjeto(documento.id)">{{ documento.titulo }}</router-link>
+                <div class="carregando-historico" v-if="carregandoHistorico" v-for="h in 15" :key="h"></div>
+                <router-link to="/dashboard" v-else-if="!carregandoHistorico && historico.length > 0" class="titlo-historico" :class="{'ativo': documento?.id === DocumentoSelecionado}" v-for="documento in historico" @click="setarProjeto(documento.id)">{{ documento?.titulo }}</router-link>
+                <p class="p-informacao-vazio" v-else>Sem histórico</p>
             </div>
         </div>
 
@@ -37,12 +39,12 @@
             @click="fecharHistoricoSetarDocumentoNull"
             >
                 <div class="foto-usuario">
-                    <img :src="usuario.foto" class="foto-real" v-if="usuario.foto">
-                    <img src="@/assets/camera.png" class="sem-foto" v-else>
+                    <img :src="usuario.foto" class="foto-real" v-if="usuario?.foto">
+                    <p class="sem-foto" v-else>{{usuario?.nome?.split(' ').slice(0, 2).map(n => n[0]?.toUpperCase()).join('.')}}</p>
                 </div>
                 <div class="detalhes">
-                    <p class="nome-usuario">{{ usuario.nome }}</p>
-                    <p class="cargo">{{ usuario.cargo }}</p>
+                    <p class="nome-usuario">{{ usuario?.nome }}</p>
+                    <p class="cargo">{{ usuario?.cargo }}</p>
                 </div>
             </router-link>
         </div>
@@ -65,7 +67,8 @@ export default{
                 cargo: '',
                 foto: ''
             },
-            DocumentoSelecionado: null
+            DocumentoSelecionado: null,
+            carregandoHistorico: false
         }
     },
 
@@ -75,6 +78,7 @@ export default{
 
     methods:{
         async buscarHistorico(){
+            this.carregandoHistorico = true
             try{
                 const { data } = await api.get(`/documentacao/historico`)
                 this.historico = data   
@@ -82,6 +86,9 @@ export default{
             }
             catch(err){
                 console.error(err)
+            }
+            finally{
+                this.carregandoHistorico = false
             }
         },
 
@@ -171,8 +178,42 @@ export default{
     height: auto;
     max-height: 380px;
     overflow-y: auto;
-    /* margin-left: 10px; */
     overflow-x: hidden;
+}
+
+.carregando-historico{
+    width: 90%;
+    height: 30px;
+    border-radius: 100px;
+    background-color: #dedede;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.carregando-historico::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--cor-padrao-fundo-shimmer-sufla),
+        transparent
+    );
+
+    animation: shimmer 1.4s infinite;
+}
+
+.p-informacao-vazio{
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cor-texto);
+    margin: auto;
 }
 
 .titlo-historico{
@@ -299,6 +340,7 @@ export default{
     height: 45px;
     border-radius: 100px;
     border: solid 0.5px var(--cor-texto);
+    background-color: var(--cor-tema);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -312,8 +354,11 @@ export default{
 }
 
 .sem-foto{
-    width: 10px;
-    height: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--cor-fundo-2);
+    color: #f4f4f4;
+    z-index: 10;
 }
 
 .detalhes{
@@ -342,6 +387,15 @@ export default{
     100%{
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
     }
 }
 

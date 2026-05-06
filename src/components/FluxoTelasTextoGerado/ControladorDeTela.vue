@@ -2,13 +2,15 @@
     <section class="conteudo-telas-texto-gerado">
         <TelaProjeto
         v-if="tela === 'seu-projeto' && Object.keys(documento).length > 0"
+        :github_url="github_url"
         :titulo="titulo"
         :descricao="descricao"
         :data="data"
         :id="id"
         @mostrar-apagar-projeto="setarProjetoApagar"
         @update-dados="sincronizarMudancas"
-        @salvar="atualizarDocumento"
+        @salvar="editarDocumento"
+        @atualizar="atualizarDocumento"
         />
 
         <TelaReadme
@@ -64,6 +66,7 @@ export default{
     data(){
         return{
             tela: 'seu-projeto',
+            github_url: null,
             titulo: null,
             descricao: null,
             readme: null,
@@ -102,6 +105,7 @@ export default{
                 this.diagramas = dadosDocumento.diagramas_projeto
                 this.glossario = dadosDocumento.glossario_projeto
                 this.id = dadosDocumento.id
+                this.github_url = dadosDocumento.github_url
             }
         }
     },
@@ -115,13 +119,13 @@ export default{
             console.log(fragmento)
         },
 
-        async atualizarDocumento() {
+        async editarDocumento() {
             console.log("Fui")
             if (Object.keys(this.projetoEditado).length === 0) return;
 
             try {
                 const { data } = await api.patch(
-                    `/documentacao/atualizar?id_projeto=${this.id}`, 
+                    `/documentacao/editar?id_projeto=${this.id}`, 
                     this.projetoEditado
                 );
                 mostrarPopUp(
@@ -138,6 +142,28 @@ export default{
                     "Erro.",
                     "Erro ao tentar salvar o projeto."
                 )
+            }
+        },
+
+        async atualizarDocumento(){
+            try{
+                const { data } = await api.patch(
+                    `/documentacao/atualizar?id_projeto=${this.id}`, 
+                );
+                this.documento = data
+                mostrarPopUp(
+                    "concluido",
+                    "Projeto atualizando.",
+                    "Projeto atualizado com sucesso."
+                )
+            }
+            catch(err){
+                mostrarPopUp(
+                    "erro",
+                    "Erro.",
+                    "Erro ao tentar atualizar o projeto."
+                )
+                console.error(err)
             }
         }
     }

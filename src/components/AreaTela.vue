@@ -68,7 +68,7 @@ export default{
 
 .area-link{
     height: 30px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--cor-texto);
     text-decoration: none;

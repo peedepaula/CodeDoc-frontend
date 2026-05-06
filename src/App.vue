@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import Historico from './components/Historico.vue';
-import Copiado from './components/popUps/Copiado.vue';
-import PopUpGlobal from './components/PopUps/PopUpGlobal.vue';
+import Historico from '@/components/Historico.vue';
+import Copiado from '@/components/popUps/Copiado.vue';
+import PopUpGlobal from '@/components/PopUps/PopUpGlobal.vue';
 
 export default{
     name: "App",
