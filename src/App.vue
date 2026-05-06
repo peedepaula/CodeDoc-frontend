@@ -24,7 +24,7 @@
 <script>
 import Historico from '@/components/Historico.vue';
 import PopUpGlobal from '@/components/PopUps/PopUpGlobal.vue';
-import CopiadoComp from '@/components/PopUps/Copiado.vue';
+import CopiadoComp from '@/components/PopUps/CopiadoComp.vue';
 
 export default{
     name: "App",
