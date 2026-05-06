@@ -6,7 +6,7 @@
 import copiarService from "@/services/MostrarPopUpCopiado"
 
 export default{
-    name: 'Copiado',
+    name: 'CopiadoComp',
     setup(){
         return {
             visivel: copiarService.visivel

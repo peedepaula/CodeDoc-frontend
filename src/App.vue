@@ -14,7 +14,7 @@
             />
         
             <!-- PopUps -->
-            <Copiado/>
+            <CopiadoComp/>
             <PopUpGlobal/>
              <!-- PopUps -->
         </div>
@@ -23,13 +23,13 @@
 
 <script>
 import Historico from '@/components/Historico.vue';
-import Copiado from '@/components/popUps/Copiado.vue';
 import PopUpGlobal from '@/components/PopUps/PopUpGlobal.vue';
+import CopiadoComp from '@/components/popUps/Copiado.vue';
 
 export default{
     name: "App",
     components:{
-        Copiado,
+        CopiadoComp,
         Historico,
         PopUpGlobal
     },
