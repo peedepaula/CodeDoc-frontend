@@ -36,7 +36,7 @@
 <script>
 import olhoAberto from '@/assets/olho-aberto.png'
 import olhoFechado from '@/assets/olho-fechado.png'
-import api from '@/services/api';
+import api, { TOKEN_KEY } from '@/services/api';
 import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 
 export default{
@@ -119,6 +119,14 @@ export default{
             return this.senhaFraca ? 'texto-vermelho' : 'texto-verde';
         }
     },
+
+    mounted(){
+        const token = localStorage.getItem(TOKEN_KEY)
+
+        if(token){
+            this.$router.push("/dashboard")
+        }
+    }
 }
 </script>
 <style scoped>

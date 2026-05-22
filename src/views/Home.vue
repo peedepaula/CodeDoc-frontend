@@ -3,7 +3,7 @@
         <section class="conteudo">
             <section class="conteudo-real">
                 <AreaTela
-                v-if="Object.keys(documento).length > 0"
+                v-if="Object.keys(documento).length > 0 && documento.readme_projeto !== 'Processando...'"
                 @setou-tela="setarTela"
                 @abrir-historico="$emit('abrir-historico')"
                 />
@@ -17,9 +17,11 @@
                 <BarraDeMensagem
                 v-if="Object.keys(documento).length === 0"
                 @projeto-criado="setarDocumento"
+                @iniciar-polling="iniciarPolling"
                 />
                 <button class="baixar"
-                v-if="Object.keys(documento).length > 0"
+                v-if="Object.keys(documento).length > 0 && documento.readme_projeto !== 'Processando...'"
+                @click="baixarDocumentacao"
                 >
                     <img src="@/assets/download.png" class="icon-baixar">
                 </button>
@@ -39,6 +41,7 @@ import AreaTela from '@/components/AreaTela.vue';
 import BarraDeMensagem from '@/components/BarraDeMensagem.vue';
 import ControladorDeTela from '@/components/FluxoTelasTextoGerado/ControladorDeTela.vue';
 import ConfirmacaoApagarProjeto from '@/components/PopUps/ConfirmacaoApagarProjeto.vue';
+import { mostrarPopUp } from '@/services/MostrarPopUpGlobal';
 import api from '@/services/api';
 
 export default{
@@ -78,6 +81,8 @@ export default{
     },
 
     methods:{
+        mostrarPopUp,
+
         setarTela(tela){
             this.telaAtual = tela
         },
@@ -95,14 +100,83 @@ export default{
         },
 
         setarDocumento(documento){
-            this.documento = documento
+            this.documento = {} 
+            this.$nextTick(() => {
+                this.documento = { ...documento }
+            })
         },
 
         setarPojetoApagar(projetoApagar){
             this.projetoApagar =projetoApagar
             this.mostrarConfirmacaoApagarProjeto=true
-        }
+        },
 
+        async baixarDocumentacao() {
+            try{
+                const response = await api.get(
+                    `/documentacao/download?id_projeto=${this.documento.id}`,
+                    {
+                        responseType: 'blob'
+                    }
+                )
+
+                const blob = new Blob([response.data], {
+                    type: 'application/pdf'
+                })
+
+                const url = window.URL.createObjectURL(blob)
+                const link = document.createElement('a')
+                link.href = url
+
+                link.download = 'documentacao.pdf'
+
+                document.body.appendChild(link)
+                link.click()
+                link.remove()
+
+                window.URL.revokeObjectURL(url)
+            }
+
+            catch(err){
+                console.error(err)
+            }
+        },
+
+        async iniciarPolling(idProjeto) {
+            const intervalo = setInterval(async () => {
+            try {
+
+                const { data } = await api.get(
+                    `/documentacao/buscar`,
+                    {
+                        params: {
+                            id_projeto: idProjeto
+                        }
+                    }
+                )
+
+                const terminou =
+                    data.readme_projeto !== "" &&
+                    data.readme_projeto !== "Processando..."
+
+                if (terminou) {
+                    clearInterval(intervalo)
+                    mostrarPopUp(
+                        "concluido",
+                        "Concluído.",
+                        "Documentação criada com sucesso!"
+                    )
+                    this.documento = data
+                }
+            }
+
+            catch (err) {
+                clearInterval(intervalo)
+                console.error(err)
+            }
+
+            }, 3000)
+        }
     }
 }
 </script>

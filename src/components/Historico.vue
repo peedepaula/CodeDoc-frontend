@@ -102,7 +102,7 @@ export default{
             try{
                 const { data } = await api.get(`/usuario/me`)
                 this.usuario.nome = data.nome
-                this.usuario.cargo = data.nome
+                this.usuario.cargo = data.cargo
                 this.usuario.foto = data.foto
             }
             catch(err){
@@ -179,6 +179,7 @@ export default{
     max-height: 380px;
     overflow-y: auto;
     overflow-x: hidden;
+    flex-shrink: 0;
 }
 
 .carregando-historico{
@@ -234,10 +235,12 @@ export default{
     align-items: center;
     padding-left: 10px;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .titlo-historico:hover{
     transform: translateX(5px);
+    background-color: #f4f4f4;
 }
 
 .ativo{

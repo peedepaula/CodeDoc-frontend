@@ -5,7 +5,7 @@
         :github_url="github_url"
         :titulo="titulo"
         :descricao="descricao"
-        :data="data"
+        :data="dataProjeto"
         :id="id"
         @mostrar-apagar-projeto="setarProjetoApagar"
         @update-dados="sincronizarMudancas"
@@ -66,15 +66,15 @@ export default{
     data(){
         return{
             tela: 'seu-projeto',
-            github_url: null,
-            titulo: null,
-            descricao: null,
-            readme: null,
-            wiki: null,
-            diagramas: null,
-            glossario: null,
-            data: null,
-            id: null,
+            // github_url: null,
+            // titulo: null,
+            // descricao: null,
+            // readme: null,
+            // wiki: null,
+            // diagramas: null,
+            // glossario: null,
+            // data: null,
+            // id: null,
 
             projetoEditado: {}
 
@@ -94,20 +94,20 @@ export default{
                 }
             }
         },
-        documento:{
-            immediate: true,
-            handler(dadosDocumento){
-                this.titulo = dadosDocumento.titulo_projeto
-                this.descricao = dadosDocumento.descricao_projeto
-                this.data = dadosDocumento.criado_em
-                this.readme = dadosDocumento.readme_projeto
-                this.wiki = dadosDocumento.wiki_projeto
-                this.diagramas = dadosDocumento.diagramas_projeto
-                this.glossario = dadosDocumento.glossario_projeto
-                this.id = dadosDocumento.id
-                this.github_url = dadosDocumento.github_url
-            }
-        }
+        // documento:{
+        //     immediate: true,
+        //     handler(dadosDocumento){
+        //         this.titulo = dadosDocumento.titulo_projeto
+        //         this.descricao = dadosDocumento.descricao_projeto
+        //         this.data = dadosDocumento.criado_em
+        //         this.readme = dadosDocumento.readme_projeto
+        //         this.wiki = dadosDocumento.wiki_projeto
+        //         this.diagramas = dadosDocumento.diagramas_projeto
+        //         this.glossario = dadosDocumento.glossario_projeto
+        //         this.id = dadosDocumento.id
+        //         this.github_url = dadosDocumento.github_url
+        //     }
+        // }
     },
     methods:{
         setarProjetoApagar(projetoApagar){
@@ -165,6 +165,44 @@ export default{
                 )
                 console.error(err)
             }
+        }
+    },
+
+    computed:{
+        github_url(){
+            return this.documento.github_url
+        },
+
+        titulo(){
+            return this.documento.titulo_projeto
+        },
+
+        descricao(){
+            return this.documento.descricao_projeto
+        },
+
+        dataProjeto(){
+            return this.documento.criado_em
+        },
+
+        readme(){
+            return this.documento.readme_projeto
+        },
+
+        wiki(){
+            return this.documento.wiki_projeto
+        },
+
+        diagramas(){
+            return this.documento.diagramas_projeto
+        },
+
+        glossario(){
+            return this.documento.glossario_projeto
+        },
+
+        id(){
+            return this.documento.id
         }
     }
 }

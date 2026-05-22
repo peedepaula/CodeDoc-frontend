@@ -69,7 +69,16 @@ export default{
                 )
             }
         }
+    },
+
+    mounted(){
+        const token = localStorage.getItem(TOKEN_KEY)
+
+        if(token){
+            this.$router.push("/dashboard")
+        }
     }
+    
 }
 </script>
 <style scoped>

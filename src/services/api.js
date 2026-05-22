@@ -3,7 +3,8 @@ import axios from "axios";
 const TOKEN_KEY = "token_sufla";
 
 const api = axios.create({
-  baseURL: "https://codedoc-backend-jmym.onrender.com",
+  //baseURL: "https://codedoc-backend-jmym.onrender.com",
+  baseURL: "http://192.168.0.108:8000",
   headers: {
     "Content-Type": "application/json",
   },

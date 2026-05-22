@@ -1,100 +1,122 @@
 <template>
     <main class="corpo">
-        <section class="conteudo">
-            <nav class="nav">
-                <NavLandingPage/>
-            </nav>
+        <nav class="nav">
+            <NavLandingPage/>
+        </nav>
 
-            <section class="tela">
-                <div class="conteudo-tela-1">
-                    <h1 class="texto-principal">CodeDoc documentação automática com Inteligência Artificial para seus projetos em segundos e totalmente grátis.</h1>
-                    <p class="descricao">O CodeDoc analisa seu código ou repositório GitHub e gera automaticamente README,
-                    Wiki técnica, diagramas de fluxo e glossário estruturado.
-                    Reduza a dívida técnica e mantenha seus projetos organizados sem esforço manual.
-                    </p>
-                    <div class="botoes-tela-1">
-                        <a class="saiba-mais" href="#tela-1">Saiba mais</a>
-                        <router-link to="/registrar" class="comecar-agora">Começar agora</router-link>
-                    </div>
+        <!-- Hero -->
+        <section class="tela hero">
+            <div class="hero-grid">
+                <div class="hero-tag">IA para desenvolvedores</div>
+                <h1 class="hero-titulo">Documentação automática para seu código.</h1>
+                <p class="hero-sub">O CodeDoc analisa seu repositório GitHub e gera README, Wiki, diagramas e glossário em segundos — sem esforço manual.</p>
+                <div class="hero-botoes">
+                    <router-link to="/registrar" class="btn-primario">Começar grátis</router-link>
+                    <a href="#sobre" class="btn-secundario">Ver como funciona</a>
                 </div>
-            </section>
-
-            <section class="tela" id="tela-1">
-                <div class="conteudo-tela-2-fundo">
-                    <h2 class="titulo-tela">Sobre nós</h2>
-                    <div class="conteudo-tela-2">
-                        <h3 class="texto-tela-2">O CodeDoc é uma ferramenta que utiliza Inteligência Artificial para gerar automaticamente documentação técnica a partir do código ou de repositórios do GitHub. Em poucos segundos, a plataforma cria README, wiki técnica, diagramas de fluxo e glossários estruturados, ajudando desenvolvedores a manter seus projetos organizados e reduzir a dívida técnica sem precisar escrever documentação manualmente.</h3>
-                        <img src="@/assets/diagramas.jpg" class="img-tela-2">
-                    </div>
-                </div>
-            </section>
-
-            <section class="tela">
-                <div class="conteudo-tela-3-fundo">
-                    <h2 class="titulo-tela">Serviços</h2>
-                    <div class="conteudo-tela-3">
-                        <div class="servico-esquerda">
-                            <img src="@/assets/readme.png"  class="img-servico">
-                            <div class="textos-servico">
-                                <p class="nome-servico">Readme</p>
-                                <p class="detalhe-servico">O CodeDoc é uma ferramenta que gera automaticamente documentação técnica a partir do código-fonte ou de repositórios do GitHub utilizando Inteligência Artificial. Em poucos segundos, a plataforma analisa a estrutura do projeto e cria arquivos como README, wiki técnica, diagramas de fluxo e glossários organizados. O objetivo é facilitar o entendimento do código, melhorar a organização dos projetos e reduzir o tempo gasto escrevendo documentação manualmente.</p>
-                            </div>
-                        </div>
-
-                        <div class="servico-direita">
-                            <div class="textos-servico">
-                                <p class="nome-servico">Wiki</p>
-                                <p class="detalhe-servico">A Wiki do CodeDoc reúne informações técnicas importantes do projeto geradas automaticamente a partir da análise do código. Ela organiza conceitos, módulos, funções e estruturas do sistema de forma clara, permitindo que desenvolvedores entendam rapidamente como o projeto funciona, quais são seus principais componentes e como eles se relacionam.</p>
-                            </div>
-                            <img src="@/assets/wiki.png"  class="img-servico">
-                        </div>
-
-                        <div class="servico-esquerda">
-                            <img src="@/assets/diagramas.jpg"  class="img-servico">
-                            <div class="textos-servico">
-                                <p class="nome-servico">Diagramas</p>
-                                <p class="detalhe-servico">O CodeDoc também gera automaticamente diagramas que representam o fluxo e a estrutura do projeto. Esses diagramas ajudam a visualizar como os diferentes componentes do sistema se conectam, facilitando o entendimento da arquitetura, da lógica de funcionamento e das interações entre módulos do código.</p>
-                            </div>
-                        </div>
-
-                        <div class="servico-direita">
-                            <div class="textos-servico">
-                                <p class="nome-servico">Glossário</p>
-                                <p class="detalhe-servico">O Glossário reúne os principais termos, conceitos e componentes identificados no projeto durante a análise do código. Ele ajuda a padronizar a linguagem utilizada na documentação e facilita o entendimento técnico do sistema, principalmente para novos desenvolvedores ou colaboradores que estão conhecendo o projeto.</p>
-                            </div>
-                            <img src="@/assets/glossario.png"  class="img-servico">
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </section>
-        <footer class="footer">
-            <div class="textos-footer">
-                <div class="area-texto">
-                    <p class="titulo-area-texto">Contato</p>
-                    <div class="informacoes-footer">
-                        <p class="informacao-footer">E-mail: codedoc.suporte@gmail.com</p>
-                        <p class="informacao-footer">Telefone: +55 (11) 97777-0000</p>
-                    </div>
-                </div>
 
-                <div class="area-texto">
-                    <p class="titulo-area-texto">Localização</p>
-                    <div class="informacoes-footer">
-                        <p class="informacao-footer">Brasil, São Paulo - Sp</p>
+        <!-- Sobre -->
+        <section class="tela sobre" id="sobre">
+            <div class="sobre-inner">
+                <span class="secao-label">Sobre nós</span>
+                <h2 class="secao-titulo">Elimine a dívida técnica de uma vez por todas.</h2>
+                <p class="sobre-texto">O CodeDoc é uma plataforma que usa Inteligência Artificial para gerar documentação técnica completa a partir do código-fonte ou repositórios do GitHub. Em poucos segundos, a plataforma cria README, wiki técnica, diagramas de fluxo e glossários estruturados — mantendo seus projetos organizados sem escrever uma linha de documentação manualmente.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-num">4</span>
+                        <span class="stat-label">tipos de doc gerados</span>
                     </div>
-                </div>
-
-                <div class="area-texto">
-                    <p class="titulo-area-texto">Políticas</p>
-                    <div class="informacoes-footer">
-                        <router-link to="/politica-de-uso" class="informacao-footer">Política de uso</router-link>
-                        <router-link to="/politica-de-privacidade" class="informacao-footer">Política de de privacidade</router-link>
+                    <div class="stat">
+                        <span class="stat-num">&lt;30s</span>
+                        <span class="stat-label">tempo médio</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">gratuito</span>
                     </div>
                 </div>
             </div>
-            <div class="direitos">
-                <p class="p-direitos">© 2026 CodeDoc. Todos os direitos reservados.</p>
+        </section>
+
+        <!-- Serviços -->
+        <section class="tela servicos">
+            <div class="servicos-inner">
+                <span class="secao-label">Serviços</span>
+                <h2 class="secao-titulo">Tudo que seu projeto precisa.</h2>
+
+                <div class="servicos-grid">
+                    <div class="servico-card">
+                        <div class="servico-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+                        </div>
+                        <h3 class="servico-nome">README</h3>
+                        <p class="servico-desc">Gerado automaticamente com título, descrição, como instalar, como usar e tecnologias do projeto. Pronto para o GitHub.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="servico-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                        </div>
+                        <h3 class="servico-nome">Wiki técnica</h3>
+                        <p class="servico-desc">Documentação detalhada dos módulos, funções, estruturas e arquitetura do sistema. Ideal para onboarding de novos devs.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="servico-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        </div>
+                        <h3 class="servico-nome">Diagramas</h3>
+                        <p class="servico-desc">Fluxogramas e diagramas de arquitetura gerados a partir da análise do código. Visualize a estrutura do projeto de forma clara.</p>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="servico-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        </div>
+                        <h3 class="servico-nome">Glossário</h3>
+                        <p class="servico-desc">Lista estruturada dos principais termos, conceitos e componentes do projeto. Padroniza a linguagem da equipe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="tela cta-section">
+            <div class="cta-inner">
+                <h2 class="cta-titulo">Pronto para documentar seu projeto?</h2>
+                <p class="cta-sub">Gratuito, sem cartão de crédito. Basta conectar seu repositório.</p>
+                <router-link to="/registrar" class="btn-primario btn-grande">Começar agora →</router-link>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="footer-logo">CodeDoc</span>
+                    <p class="footer-tagline">Documentação automática com IA.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <p class="footer-col-titulo">Contato</p>
+                        <p class="footer-link">codedoc.suporte@gmail.com</p>
+                        <p class="footer-link">+55 (11) 97777-0000</p>
+                    </div>
+                    <div class="footer-col">
+                        <p class="footer-col-titulo">Localização</p>
+                        <p class="footer-link">Brasil, São Paulo — SP</p>
+                    </div>
+                    <div class="footer-col">
+                        <p class="footer-col-titulo">Legal</p>
+                        <router-link to="/politica-de-uso" class="footer-link footer-link-a">Política de uso</router-link>
+                        <router-link to="/politica-de-privacidade" class="footer-link footer-link-a">Política de privacidade</router-link>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 CodeDoc. Todos os direitos reservados.</p>
             </div>
         </footer>
     </main>
@@ -105,507 +127,477 @@ import NavLandingPage from '@/components/NavLandingPage.vue';
 
 export default {
     name: 'LandingPage',
-    components:{
-        NavLandingPage
-    }
+    components: { NavLandingPage }
 }
 </script>
 
 <style scoped>
-.corpo{
-    height: auto;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
+
+/* ── Base ── */
+.corpo {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: 100vh;
     background-color: var(--cor-tema);
-    padding-top: 70px;
+    color: var(--cor-fundo-2);
+    /* font-family: 'Syne', sans-serif; */
+    overflow-x: hidden;
     background-image: radial-gradient(#ffffff3f 1px, transparent 1px);
     background-size: 30px 30px;
 }
 
-.nav{
-    width: 100%;
-    position: absolute;
+.nav {
+    position: fixed;
     top: 0;
-}
-
-.conteudo{
-    max-width: 1600px;
-    height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    z-index: 100;
 }
 
-.tela{
-    height: auto;
+/* ── Shared ── */
+.tela {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 120px 60px;
+}
+
+.secao-label {
+    display: inline-block;
+    /* font-family: 'DM Mono', monospace; */
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cor-tema, #1a7a9a);
+    border: 1px solid var(--cor-tema, #1a7a9a);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+}
+
+.secao-titulo {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--cor-fundo-2);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    max-width: 640px;
+}
+
+/* ── Hero ── */
+.hero {
     min-height: 100vh;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 40px;
-    flex: none;
-}
-
-/* Tela 1 */
-
-.conteudo-tela-1{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    box-sizing: border-box;
-    padding-top: 30px;
-}
-
-.texto-principal{
-    font-size: 50px;
-    max-width: 80%;
-    font-weight: 700;
-    color: var(--cor-fundo-2);
-}
-
-.descricao{
-    font-size: 14px;
-    color: var(--cor-fundo-2);
-    max-width: 50%;
-    font-weight: 300;
-    opacity: 0.6;
-}
-
-.botoes-tela-1{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.saiba-mais{
-    padding: 0 32px 0 32px;
-    height: 35px;
-    border-radius: 100px;
-    border: solid 1px var(--cor-fundo-2);
-    color: var(--cor-fundo-2);
-    background-color: var(--cor-tema);
-    cursor: pointer;
-    transition: all ease 0.3s;
-    width: fit-content;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-}
-
-.saiba-mais:hover{
-    transform: translateY(-3px);
-    background-color: var(--cor-fundo-2);
-    color: var(--cor-tema);
-}
-
-.comecar-agora{
-    padding: 0 32px 0 32px;
-    height: 35px;
-    border-radius: 100px;
-    border: solid 1px var(--cor-fundo-2);
-    color: var(--cor-tema);
-    background-color: var(--cor-fundo-2);
-    cursor: pointer;
-    transition: all ease 0.3s;
-    width: fit-content;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-}
-
-.comecar-agora:hover{
-    transform: translateY(-3px);
-    background-color: var(--cor-tema);
-    color: var(--cor-fundo-2);
-}
-
-/* Tela 2 */
-
-.conteudo-tela-2-fundo{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    box-sizing: border-box;
-    padding-top: 30px;
+    padding-top: 10px;
+    border-bottom: 1px solid #1e1e1e;
     position: relative;
 }
 
-.titulo-tela{
-    font-size: 30px;
-    font-weight: 600;
-    color: var(--cor-fundo-2);
+.hero::before {
+    content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(26,122,154,0.08) 0%, transparent 60%);
+    pointer-events: none;
 }
 
-.conteudo-tela-2{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    margin-top: 100px;
+.hero-tag {
+    display: inline-block;
+    /* font-family: 'DM Mono', monospace; */
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cor-fundo-2, #1a7a9a);
+    border: 1px solid var(--cor-fundo-2);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    width: fit-content;
 }
 
-.texto-tela-2{
-    font-size: 30px;
-    font-weight: 700;
+.hero-titulo {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    line-height: 1.05;
     color: var(--cor-fundo-2);
-    width: 50%;
-    line-height: 45px;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
 }
 
-.img-tela-2{
-    background-color: var(--cor-fundo-2);
-    height: 100vh;
-    width: 40%;
-    border-radius: 30px;
-    object-fit: cover;
-}
-/* Tela 2 */
-
-/* Tela 3 */
-
-.conteudo-tela-3-fundo{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    box-sizing: border-box;
-    padding-top: 30px;
-    position: relative;
-}
-
-
-.conteudo-tela-3{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-    margin-top: 100px;
-}
-
-.servico-esquerda{
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; */
-    gap: 15px;
-    cursor: pointer;
-    transition: all ease 0.3s;
-    align-self: flex-start;
-}
-
-.servico-direita{
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; */
-    gap: 15px;
-    cursor: pointer;
-    align-self: flex-end;
-}
-
-.img-servico{
-    width: 300px;
-    height: 300px;
-    background-color: var(--cor-fundo-2);
-    border-radius: 20px;
-    object-fit: cover;
-    object-position: left top;
-}
-
-.textos-servico{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 300px;
-}
-
-.nome-servico{
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--cor-fundo-2);
-}
-
-.detalhe-servico{
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--cor-fundo-2);  
-}
-
-/* Tela 3 */
-
-
-/* Footer */
-
-.footer{
-    width: 100%;
-    height: 350px;
-    background-color: var(--cor-fundo-2);
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 70px;
-    background-image: radial-gradient(#0c465f4e 1px, transparent 1px);
-    background-size: 30px 30px;
-    border-radius: 20px 20px 0 0;
-}
-
-.textos-footer{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    gap: 25%;
-    padding: 80px 35px 20px 35px;
-    box-sizing: border-box;
-}
-
-.area-texto{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.titulo-area-texto{
+.hero-sub {
     font-size: 16px;
-    color: var(--cor-tema);
-    font-weight: 500;
+    line-height: 1.7;
+    color: var(--cor-fundo-2);
+    max-width: 480px;
+    margin-bottom: 40px;
+    font-weight: 400;
 }
 
-.informacoes-footer{
+.hero-botoes {
     display: flex;
-    flex-direction: column;
-    gap: 5px; 
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.informacao-footer{
-    font-size: 13px;
+/* ── Botões ── */
+.btn-primario {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 28px;
+    background-color: var(--cor-fundo-2, #1a7a9a);
     color: var(--cor-tema);
-    font-weight: 300;
+    border-radius: 6px;
+    /* font-family: 'Syne', sans-serif; */
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid var(--cor-fundo-2, #1a7a9a);
 }
 
-.direitos{
-    height: 70px;
-    width: 100%;
-    border-top: solid 1px var(--cor-tema);
-    position: absolute;
-    bottom: 0;
+.btn-primario:hover {
+    background-color: transparent;
+    color: var(--cor-fundo-2, #1a7a9a);
+    transform: translateY(-2px);
+}
+
+.btn-secundario {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 28px;
+    background-color: transparent;
+    color: var(--cor-fundo-2);
+    border-radius: 6px;
+    /* font-family: 'Syne', sans-serif; */
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid var(--cor-fundo-2);
+}
+
+.btn-secundario:hover {
+    color: var(--cor-fundo-2);
+    border-color: #444;
+}
+
+.btn-grande {
+    height: 52px;
+    padding: 0 36px;
+    font-size: 16px;
+}
+
+/* ── Terminal ── */
+.hero-visual {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.p-direitos{
+.terminal {
+    background-color: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+
+.terminal-header {
+    background-color: #1a1a1a;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #222;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red   { background-color: #ff5f57; }
+.dot-yellow { background-color: #ffbd2e; }
+.dot-green { background-color: #28c840; }
+
+.terminal-title {
+    /* font-family: 'DM Mono', monospace; */
+    font-size: 12px;
+    color: #555;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(-24px);
+}
+
+.terminal-body {
+    padding: 24px;
+    /* font-family: 'DM Mono', monospace; */
     font-size: 13px;
-    font-weight: 300;
+    line-height: 2;
+}
+
+.terminal-body p { margin: 0; }
+
+.t-prompt { color: var(--cor-tema, #1a7a9a); }
+.t-dim    { color: #444; }
+.t-success { color: #28c840; }
+.t-blink  { color: var(--cor-fundo-2); margin-top: 8px; }
+
+.cursor {
+    animation: piscar 1s step-end infinite;
+}
+
+@keyframes piscar {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ── Sobre ── */
+.sobre {
+    border-bottom: 1px solid #1e1e1e;
+    background-image: radial-gradient(circle at 80% 50%, rgba(26,122,154,0.05) 0%, transparent 60%);
+}
+
+.sobre-inner {
+    max-width: 800px;
+}
+
+.sobre-texto {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--cor-fundo-2);
+    margin-bottom: 60px;
+}
+
+.stats {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-num {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--cor-fundo-2, #1a7a9a);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.stat-label {
+    /* font-family: 'DM Mono', monospace; */
+    font-size: 11px;
+    color: var(--cor-fundo-2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ── Serviços ── */
+.servicos {
+    border-bottom: 1px solid var(--cor-fundo-2);
+}
+
+.servicos-inner {
+    width: 100%;
+}
+
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 48px;
+}
+
+.servico-card {
+    background-color: var(--cor-fundo-2);
+    padding: 40px 32px;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.servico-card:hover {
+    transform: translateY(-2px);
+}
+
+.servico-icon {
+    color: var(--cor-tema, #1a7a9a);
+    margin-bottom: 20px;
+}
+
+.servico-nome {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cor-tema);
+    margin-bottom: 12px;
+}
+
+.servico-desc {
+    font-size: 14px;
+    line-height: 1.7;
     color: var(--cor-tema);
 }
 
-/* Footer */
+/* ── CTA ── */
+.cta-section {
+    text-align: center;
+    background-image: radial-gradient(circle at 50% 50%, rgba(26,122,154,0.08) 0%, transparent 70%);
+    border-bottom: 1px solid #1e1e1e;
+}
 
+.cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
 
-@media (min-width: 768px) and (max-width: 1024px) {
-    .conteudo{
-        gap: 40px;
-    }
+.cta-titulo {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
 
-    .tela{
-        padding: 20px;
-        height: auto;
+.cta-sub {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* ── Footer ── */
+.footer {
+    background-color: var(--cor-fundo-2);
+    border-top: 1px solid #1a1a1a;
+    padding: 100px 60px 0 ;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.footer-brand {
+    max-width: 200px;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+.footer-tagline {
+    font-size: 13px;
+    color: #444;
+    margin-top: 8px;
+    /* font-family: 'DM Mono', monospace; */
+}
+
+.footer-links {
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-col-titulo {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    /* font-family: 'DM Mono', monospace; */
+    margin-bottom: 4px;
+}
+
+.footer-link {
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+}
+
+.footer-link-a {
+    transition: color 0.2s ease;
+}
+
+.footer-link-a:hover {
+    color: var(--cor-tema, #1a7a9a);
+}
+
+.footer-bottom {
+    padding: 20px 0;
+    font-size: 12px;
+    color: #333;
+    /* font-family: 'DM Mono', monospace; */
+}
+
+/* ── Responsivo ── */
+@media (max-width: 1024px) {
+    .tela { padding: 80px 40px; }
+
+    .hero {
+        grid-template-columns: 1fr;
         min-height: auto;
-    }
-
-    /* Tela 1 */
-
-    .texto-principal{
-        font-size: 30px;
-        max-width: 100%;
-    }
-    .descricao{
-        max-width: 100%;
-    }
-    /* Tela 1 */
-
-    /* Tela 2 */
-
-    .conteudo-tela-2{
-        flex-direction: column-reverse;
-        gap: 50px;
-    }
-
-    .titulo-tela{
-        font-size: 20px;
-    }
-
-    .texto-tela-2{
-        font-size: 20px;
-        line-height: 30px;
-        width: 100%;
-    }
-
-    .img-tela-2{
-        width: 100%;
-        height: 400px;
-    }
-
-    /* Tela 3 */
-
-    .conteudo-tela-3{
-        gap: 100px;
-        padding-bottom: 60px;
-    }
-
-    .servico-esquerda{
-        flex-direction: column;
-        align-self: center;
-        width: 100%;
-    }
-
-    .servico-direita{
-        flex-direction: column-reverse;
-        align-self: center;
-        width: 100%;
-    }
-
-    .img-servico{
-        max-width: 100%;
-        width: 100%; 
-        aspect-ratio: 1 / 1;
-    }
-
-    .textos-servico{
-        width: 100%;
-        align-items: center;
-    }
-
-    .detalhe-servico{
-        text-align: center;
-    }
-
-    /* Tela 3 */
-
-    /* Footer */
-
-    .footer{
-        height: 450px;
-    }
-
-    .textos-footer{
-        flex-direction: column;
+        padding-top: 120px;
         gap: 40px;
     }
 
-    /* Footer */
+    .hero-visual { order: -1; }
 
+    .terminal { max-width: 100%; }
+
+    .footer { padding: 60px 40px 0; }
+
+    .footer-links { gap: 40px; }
+
+    .servicos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 600px) {
-    .conteudo{
-        max-width: 600px;
-        gap: 40px;
-    }
+    .tela { padding: 70px 24px; }
 
-    .tela{
-        padding: 20px;
-        height: auto;
-        min-height: auto;
-    }
+    .hero { padding-top: 100px; }
 
-    /* Tela 1 */
+    .hero-sub { font-size: 15px; }
 
-    .texto-principal{
-        font-size: 30px;
-        max-width: 100%;
-    }
-    .descricao{
-        max-width: 100%;
-    }
-    /* Tela 1 */
+    .stats { gap: 32px; }
 
-    /* Tela 2 */
+    .stat-num { font-size: 32px; }
 
-    .conteudo-tela-2{
-        flex-direction: column-reverse;
-        gap: 50px;
-    }
+    .servicos-grid { grid-template-columns: 1fr; }
 
-    .titulo-tela{
-        font-size: 20px;
-    }
+    .footer { padding: 50px 24px 0; }
 
-    .texto-tela-2{
-        font-size: 20px;
-        line-height: 30px;
-        width: 100%;
-    }
+    .footer-inner { flex-direction: column; gap: 40px; }
 
-    .img-tela-2{
-        width: 100%;
-        height: 400px;
-    }
-
-    /* Tela 3 */
-
-    .conteudo-tela-3{
-        gap: 100px;
-        padding-bottom: 60px;
-    }
-
-    .servico-esquerda{
-        flex-direction: column;
-        align-self: center;
-        width: 100%;
-    }
-
-    .servico-direita{
-        flex-direction: column-reverse;
-        align-self: center;
-        width: 100%;
-    }
-
-    .img-servico{
-        max-width: 100%;
-        width: 100%; 
-        aspect-ratio: 1 / 1;
-    }
-
-    .textos-servico{
-        width: 100%;
-        align-items: center;
-    }
-
-    .detalhe-servico{
-        text-align: center;
-    }
-
-    /* Tela 3 */
-
-    /* Footer */
-
-    .footer{
-        height: 450px;
-    }
-
-    .textos-footer{
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    /* Footer */
-
+    .footer-links { flex-direction: column; gap: 32px; }
 }
 </style>

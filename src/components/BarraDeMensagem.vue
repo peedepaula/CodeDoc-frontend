@@ -42,6 +42,7 @@ export default {
                     "Criando documentação! Isso pode levar alguns segundos."
                 )
                 this.$emit('projeto-criado', data)
+                this.$emit('iniciar-polling', data.id) 
             }
 
             catch(err){
